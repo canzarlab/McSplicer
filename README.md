@@ -48,13 +48,13 @@ Initially, you need as inputs the annotation GTF format file and alignments bam 
     * For single-end reads:
 
                
-               ../bin/sigcount_se <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
+               ./bin/sigcount_se <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
                
   
     * For paired-end reads:
 
                
-               ../bin/sigcount_pe <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
+               ./bin/sigcount_pe <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
 	           ./python2 pe2seCnt.py <pe_signature_count.cnt> > <se_signature_count.cnt>
                
 	      
