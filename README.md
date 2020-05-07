@@ -30,8 +30,41 @@ McSplicer was implemnted and tested on python 2.7, and requires only few standar
 
 ## Usage <a name="usage"></a>
 
-Execute McSplicer script with `--help` option for a complete list of options.  
-Sample data and usage examples can be found at `examples` subfolder.
+You can run McSplicer easily in 3 steps:
+
+1. Run exonRefine to refine the set of exons into non-overlapping segments.
+
+```shell
+./bin/exonRefine  <annotation.gtf> --prefix OUTPUT_PREFIX
+```
+
+2. Run SigCount to parse short RNA-seq read alignments and generate signature counts.
+
+   a. For single-end reads:
+
+               ```shell
+               ../bin/sigcount_se <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
+               ```
+  
+    b. For paired-end reads:
+
+               ```shell
+               ../bin/sigcount_pe <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
+               ```
+
+3. run McSplucer to get splice site usage estimates.
+
+```shell
+python2 ./python_code/McSplicer.py \
+		--gtf REFINED_GTF \
+		--count_file SIGNATURE_COUNT \
+		--gene_id GENE_ID\
+		--out_dir OUTPUT_DIRECTORY\
+		--bootstraps NUM_OF_BOOSTRAPS\
+		--read_len READ_LENGTH\
+		--prefix OUT_FILE_PREFIX
+
+  ```
 
 ### Output: ###
 
