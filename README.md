@@ -47,16 +47,16 @@ You can run McSplicer easily in 3 steps:
 
     * For single-end reads:
 
-               ```shell
+               
                ../bin/sigcount_se <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
-               ```
+               
   
     * For paired-end reads:
 
-               ```shell
+               
                ../bin/sigcount_pe <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
 	           ./python2 pe2seCnt.py PE_COUNT_FILE > SE_COUNT_FILE
-               ```
+               
 	      
 	       
 		
