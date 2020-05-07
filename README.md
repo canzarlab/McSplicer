@@ -55,7 +55,7 @@ You can run McSplicer easily in 3 steps:
 
                
                ../bin/sigcount_pe <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
-	           ./python2 pe2seCnt.py PE_COUNT_FILE > SE_COUNT_FILE
+	           ./python2 pe2seCnt.py <pe_signature_count.cnt> > <se_signature_count.cnt>
                
 	      
 	       
