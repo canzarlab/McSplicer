@@ -30,6 +30,11 @@ McSplicer was implemnted and tested on python 2.7, and requires only few standar
 
 ## Usage <a name="usage"></a>
 
+
+Execute McSplicer script with `--help` option for a complete list of options.  
+
+Sample data and usage examples can be found at `examples` subfolder.
+
 You can run McSplicer easily in 3 steps:
 
 1. Run exonRefine to refine the set of exons into non-overlapping segments.
