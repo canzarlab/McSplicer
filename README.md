@@ -40,13 +40,13 @@ You can run McSplicer easily in 3 steps:
 
 2. Run SigCount to parse short RNA-seq read alignments and generate signature counts.
 
-   a. For single-end reads:
+    * For single-end reads:
 
                ```shell
                ../bin/sigcount_se <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
                ```
   
-    b. For paired-end reads:
+    * For paired-end reads:
 
                ```shell
                ../bin/sigcount_pe <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
@@ -76,12 +76,15 @@ The output of EM algorithm is the likelihood of the parameters:
 Where <i>Ms</i> and <i>Me</i> are the total number of start and end sites, respectively.
 
 
-Authors
--------
+McSplicer developers:
+----------------------------
 * Israa Alqassem (alqassem.isra@gmail.com)
-* Yash Kumar Sonthalia (yashsonthalia@iitj.ac.in)
-* Heejung Shim (hjshim@gmail.com)
-* Stefan Canzar (canzar@genzentrum.lmu.de)
+* Yash Kumar Sonthalia (yks01247@gmail.com)
+
+SigCount and exonRefine developers:
+----------------------------
+* Sandro Andreotti <sandro.andreotti@fu-berlin.de>
+* David Weese <david.weese@fu-berlin.de>
 
 
 
