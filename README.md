@@ -43,7 +43,7 @@ You can run McSplicer easily in 3 steps:
 ./bin/exonRefine  <annotation.gtf> --prefix OUTPUT_PREFIX
 ```
 
-2. Run SigCount to parse short RNA-seq read alignments and generate signature counts.
+2. Run SigCount to parse short RNA-seq read alignments and generate signature counts, McSplicer works only with single-end reads at the moment, so you need to convert paired-end signuture counts to single-end counts.
 
     * For single-end reads:
 
@@ -55,14 +55,17 @@ You can run McSplicer easily in 3 steps:
 
                ```shell
                ../bin/sigcount_pe <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
+	           ./python2 pe2seCnt.py PE_COUNT_FILE > SE_COUNT_FILE
                ```
-
+	      
+	       
+		
 3. run McSplucer to get splice site usage estimates.
 
 ```shell
 python2 ./python_code/McSplicer.py \
 		--gtf REFINED_GTF \
-		--count_file SIGNATURE_COUNT \
+		--count_file SE_SIGNATURE_COUNT \
 		--gene_id GENE_ID\
 		--out_dir OUTPUT_DIRECTORY\
 		--bootstraps NUM_OF_BOOSTRAPS\
