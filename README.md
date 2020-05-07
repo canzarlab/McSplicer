@@ -35,7 +35,7 @@ Execute McSplicer script with `--help` option for a complete list of options.
 
 Sample data and usage examples can be found at `examples` subfolder.
 
-You can run McSplicer easily in 3 steps:
+Initially, you need as inputs the annotation GTF format file and alignments bam file, then you can run McSplicer easily in 3 steps:
 
 1. Run exonRefine to refine the set of exons into non-overlapping segments.
 
