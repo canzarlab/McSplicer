@@ -16,6 +16,12 @@ The executable files we provide here were generated and tested under the Linux s
 For running the source code, follow the instructions [here](https://github.com/canzarlab/sigcount).
 
 
+SigCount and exonRefine developers:
+----------------------------
+* Sandro Andreotti <sandro.andreotti@fu-berlin.de>
+* David Weese <david.weese@fu-berlin.de>
+
+
 
 
 
