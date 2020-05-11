@@ -89,13 +89,6 @@ McSplicer developers:
 * Israa Alqassem (alqassem.isra@gmail.com)
 * Yash Kumar Sonthalia (yks01247@gmail.com)
 
-SigCount and exonRefine developers:
-----------------------------
-* Sandro Andreotti <sandro.andreotti@fu-berlin.de>
-* David Weese <david.weese@fu-berlin.de>
-
-
-
 
 &copy; 2017 McSplicer
 
