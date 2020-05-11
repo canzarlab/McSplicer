@@ -1,7 +1,7 @@
 exonRefine and sigCount
 =======================
 
-This subfolder contains executable files needed as a data preprocessing step before running McSplicer. 
+This subfolder contains executable files needed for the data preprocessing step prior to running McSplicer. 
 
 * exonRefine used to refine the set of exons into non-overlapping segments.
 
