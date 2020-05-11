@@ -55,7 +55,7 @@ Initially, you need as inputs the annotation in GTF format and aligned and index
 
                
                ./bin/sigcount_pe <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
-	           ./python2 pe2seCnt.py <pe_signature_count.cnt> > <se_signature_count.cnt>
+	            python2 ./python_code/pe2seCnt.py <pe_signature_count.cnt> > <se_signature_count.cnt>
                
 	      
 	       
