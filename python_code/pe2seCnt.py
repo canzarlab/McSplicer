@@ -1,3 +1,13 @@
+
+
+#!/usr/bin/env python
+
+"""pe2seCnt.py: convert paired end to single end  signature counts."""
+
+__author__      = "Stefan Canzar"
+__copyright__   = "Copyright 2020, McSplicer"
+
+
 import os
 import sys
 from collections import defaultdict
