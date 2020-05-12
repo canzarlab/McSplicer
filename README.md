@@ -75,13 +75,21 @@ python2 ./python_code/McSplicer.py \
   ```
 
 ### Output: ###
-
+ 
 The output of EM algorithm is the likelihood of the parameters:
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Theta;=(&Pi;,p<sub>1</sub>,...,p<sub>Ms</sub>,q<sub>1</sub>,q<sub>2</sub>,...,q<sub>Me</sub>)
  
-Where <i>Ms</i> and <i>Me</i> are the total number of start and end sites, respectively.
+Where <i>Ms</i> and <i>Me</i> are the total number of start and end sites in a gene.
+
+The output csv file contains the following columns:
+ * Bootstrap step
+ * Splice site index
+ * Gene strand	
+ * Chromosome 	
+ * Splice site genome position	
+ * McSplicer usage estimate
 
 
 McSplicer developers:
