@@ -75,7 +75,13 @@ python2 ./python_code/McSplicer.py \
 
   ```
 
+### Output: ###
 
+The output csv file contains the bootstrap step, splice site index, gene strand, chromosome, splice site genome position, and McSplicer splice site usage estimate.
+ 
+ If you choose to run McSplicer with ```--bootstraps n```, step 0 in the output file corresponds to the estimates based on input count data, and the following n steps correspond to the estimates of bootstrap count data.
+ 
+ Splice site index column represents the index of 3' start or 5' end splice sites as they appear in a gene according to their chronological order, e.g., s<sub>0</sub>, s<sub>1</sub>,..., e<sub>0</sub>, e<sub>1</sub>,.. as shown in the above figure.
 
 
 McSplicer developers:
@@ -84,7 +90,7 @@ McSplicer developers:
 * Yash Kumar Sonthalia (yks01247@gmail.com)
 
 
-&copy; 2017 McSplicer
+&copy; 2020 McSplicer
 
 
 
