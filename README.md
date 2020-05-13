@@ -36,7 +36,12 @@ Execute McSplicer script with `--help` option for a complete list of options.
 
 Sample data and usage examples can be found at `examples` subfolder.
 
-Initially, you need as inputs the annotation in GTF format and aligned and indexed RNA-seq reads in bam file, then you can run McSplicer easily in 3 steps:
+Initially, you need as inputs:
+* The annotation in GTF format, which can be obtained from available reference annotation, e.g., Homo sapiens genome assembly GRCh37 (hg19), or estimated from RNA-seq reads using existing assemblers such as StringTie.
+
+* Aligned, sorted and indexed RNA-seq reads in SAMTools BAM file. For example the BAM files in `examples/bam/` were aligned using STAR, then sorted and indexed using SAMTools.
+
+You can run McSplicer easily in 3 steps:
 
 1. Run exonRefine to refine the set of exons into non-overlapping segments.
 
