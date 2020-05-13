@@ -8,22 +8,9 @@ Here we run McSplicer on an example of ENOPH1 gene obtained from two Autism pati
 2. A patien without the mutation (Sample ID: ERR2902117_S5, patient ID: 11414)
 
 
-All autism patient samples are available [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-7351/samples/?s_page=1&s_pagesize=25)
+All autism patient samples are available [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-7351/samples/?s_page=1&s_pagesize=25).
 
-### Output: ###
 
-The output csv file contains the following columns:
-
- * Bootstrap step
- * Splice site index
- * Gene strand	
- * Chromosome 	
- * Splice site genome position	
- * McSplicer splice site usage estimate
- 
- If you choose to run McSplicer with ```--bootstraps n```, step 0 in the output file corresponds to the estimates based on input count data, and the following n steps correspond to the estimates of bootstrap count data.
- 
- Splice site index column represents the index of 3' start or 5' end splice sites as they appear in a gene according to their chronological order, e.g., s<sub>0</sub>, s<sub>1</sub>,..., e<sub>0</sub>, e<sub>1</sub>,..
 
 
 ### References: ###
