@@ -19,7 +19,7 @@ git clone https://github.com/shimlab/McSplicer.git
 You can execute the script:
 
 ```shell
-python2 ./python_code/McSplicer.py --help
+python ./python_code/McSplicer.py --help
 ```
 
 
