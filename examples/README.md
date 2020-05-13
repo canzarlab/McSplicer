@@ -21,7 +21,7 @@ The output csv file contains the following columns:
  * Splice site genome position	
  * McSplicer splice site usage estimate
  
- If you choose to run McSplicer with ```--bootstraps n```, step 0 in the output file corresponds to the estimates based on input data, and the following n steps correspond to bootstrapping results.
+ If you choose to run McSplicer with ```--bootstraps n```, step 0 in the output file corresponds to the estimates based on input count data, and the following n steps correspond to the estimates of bootstrap count data.
  
  Splice site index column represents the index of 3' start or 5' end splice sites as they appear in a gene according to their chronological order, e.g., s<sub>0</sub>, s<sub>1</sub>,..., e<sub>0</sub>, e<sub>1</sub>,..
 
