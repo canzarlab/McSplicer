@@ -1,6 +1,6 @@
 McSplicer
 =========
-**McSplicer** is a probabilistic model for quantifying splicing processes, rather than modeling an individual outcome of a process such as exon skipping. McSplicer is based on gene-wide usage of splice sites. We assume that potential 5' and 3' splice sites are given. This information can be obtained from annotation databases or estimated from RNA-seq data by using existing assemblers.  It estimates splice site usages using an inhomogeneous Markov chain, hence the name Markov chain Splicer. Using these parameters, we can describe the splicing process, and estimate the probabilities of various local splicing events.
+**McSplicer** is a probabilistic model for quantifying splicing processes, rather than modeling an individual outcome of a process such as exon skipping. McSplicer is based on gene-wide usage of splice sites. We assume that potential 5' and 3' splice sites are given. This information can be obtained from annotation databases or estimated from RNA-seq data by using existing assemblers.  McSplicer estimates splice site usages using an inhomogeneous Markov chain, hence the name Markov chain Splicer. Using these parameters, we can describe the splicing process, and estimate the probabilities of various local splicing events.
 
 
    ![McSplicer](https://github.com/canzarlab/McSplicer/blob/master/Figures/McSplicer_summary.png) 
@@ -75,14 +75,6 @@ python2 ./python_code/McSplicer.py \
 
   ```
 
-### Output: ###
- 
-The output of EM algorithm is the likelihood of the parameters:
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&Theta;=(&Pi;,p<sub>1</sub>,...,p<sub>Ms</sub>,q<sub>1</sub>,q<sub>2</sub>,...,q<sub>Me</sub>)
- 
-Where <i>Ms</i> and <i>Me</i> are the total number of start and end sites in a gene.
 
 
 
