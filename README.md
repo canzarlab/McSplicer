@@ -1,9 +1,10 @@
 McSplicer
 =========
+**McSplicer** is a probabilistic model for quantifying splicing processes, rather than modeling individual outcomes of the processes such as exon skipping. McSplicer is based on gene-wide usage of splice sites. We assume that potential 5' and 3' splice sites are given. This information can be obtained from annotation databases or estimated from RNA-seq data by using existing assemblers.  It estimates splice site usages using an inhomogeneous Markov chain, hence the name Markov chain Splicer. Using these parameters, we can describe the splicing process, and estimate the probabilities of various local splicing events.
 
-This repository provides a software that implements 
-a probabilistic model for alternative splicing in Python. 
-The model described in [here](https://github.com/shimlab/Probsplicing).
+
+ ![McSplicer](https://github.com/canzarlab/McSplicer/blob/master/Figures/McSplicer_summary.svg) 
+
 
 
 Using this software
