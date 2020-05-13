@@ -83,13 +83,6 @@ The output of EM algorithm is the likelihood of the parameters:
  
 Where <i>Ms</i> and <i>Me</i> are the total number of start and end sites in a gene.
 
-The output csv file contains the following columns:
- * Bootstrap step
- * Splice site index
- * Gene strand	
- * Chromosome 	
- * Splice site genome position	
- * McSplicer usage estimate
 
 
 McSplicer developers:
