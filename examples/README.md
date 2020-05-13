@@ -13,9 +13,9 @@ All autism patient samples are available [here](https://www.ebi.ac.uk/arrayexpre
 
 
 
-### References: ###
+### Reference: ###
 
-Jaganathan, Kishore, et al. "Predicting splicing from primary sequence with deep learning." Cell 176.3 (2019): 535-548.
+* Jaganathan, Kishore, et al. "Predicting splicing from primary sequence with deep learning." Cell 176.3 (2019): 535-548.
 
 
 &copy; 2020 McSplicer
