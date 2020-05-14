@@ -9,7 +9,7 @@ This subfolder contains executable files needed for the data preprocessing step 
 
 The executable files we provide here were generated and tested under the Linux system x86_64.
   
-Binaries for MacOS are available in the subfolder [bin_osx](https://github.com/canzarlab/McSplicer/tree/master/bin_osx)
+Binaries for MacOS are available in the subfolder `../bin_osx` [bin_osx](https://github.com/canzarlab/McSplicer/tree/master/bin_osx)
 
 For running the source code, follow the instructions [here](https://github.com/canzarlab/sigcount).
 
