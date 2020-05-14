@@ -49,11 +49,11 @@ You can run McSplicer easily in 3 steps:
 ./bin/exonRefine  <annotation.gtf> --prefix OUTPUT_PREFIX
 ```
  
-2. Run SigCount to parse short RNA-seq read alignments and generate signature counts, i.e., the number of reads mapped to each of the four distinct signature {1,2,3,4}, or signature junction {1-2, 1-3, 1-4, 2-3, 3-4}. For example, in the figure above we have have 16 reads mapped to the first signuture and 4 reads mapped to the junction 3-4.
+2. Run SigCount to parse short RNA-seq read alignments and generate signature counts, i.e., the number of reads mapped to each of the four distinct signature {1,2,3,4}, or their junctions {1-2, 1-3, 1-4, 2-3, 3-4}. For example, in the figure above we have have 16 reads mapped to the first signuture and 4 reads mapped to the junction 3-4.
 
 
 ```shell
- ./bin/sigcount_se <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
+ ./bin/sigcount <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
 ```
  
 		
