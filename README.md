@@ -43,7 +43,7 @@ Initially, you need as inputs:
 
 You can run McSplicer easily in 3 steps:
 
-1. Run exonRefine to refine the set of exons into non-overlapping, contiguous subexonic regions, i.e., signatures. For example, in the figure shown above we have 4 distinct signatures {1, 2, 3, 4}.
+1. Run exonRefine to refine the set of exons into non-overlapping, contiguous subexonic regions, i.e., signatures. For example, in the figure shown above we have 4 distinct signatures numbered in the grey rectangles {1, 2, 3, 4}.
 
 ```shell
 ./bin/exonRefine  <annotation.gtf> --prefix OUTPUT_PREFIX
