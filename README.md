@@ -52,8 +52,7 @@ You can run McSplicer easily in 3 steps:
 ```
  
 		
-3. Run McSplucer to get splice site usage estimates. Execute McSplicer script with `--help` option for a complete list of options.  
-
+3. Run McSplucer to get splice site usage estimates. 
 ```shell
 python ./python_code/McSplicer.py \
 		--gtf REFINED_GTF \
@@ -66,7 +65,8 @@ python ./python_code/McSplicer.py \
 
   ```
   
-  
+  Execute McSplicer script with `--help` option for a complete list of options.  
+
 Sample data and usage examples can be found at `./examples` subfolder.
 
 ### Output: ###
