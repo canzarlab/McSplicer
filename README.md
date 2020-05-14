@@ -31,11 +31,6 @@ McSplicer was implemnted and tested on python 2.7, and requires only few standar
 
 ## Usage <a name="usage"></a>
 
-
-Execute McSplicer script with `--help` option for a complete list of options.  
-
-Sample data and usage examples can be found at `examples` subfolder.
-
 Initially, you need as inputs:
 * The annotation in GTF format, which can be obtained from available reference annotation, e.g., Homo sapiens genome assembly GRCh37 (hg19), or estimated from RNA-seq reads using existing assemblers such as StringTie.
 
@@ -57,7 +52,7 @@ You can run McSplicer easily in 3 steps:
 ```
  
 		
-3. Run McSplucer to get splice site usage estimates.
+3. Run McSplucer to get splice site usage estimates. Execute McSplicer script with `--help` option for a complete list of options.  
 
 ```shell
 python ./python_code/McSplicer.py \
@@ -70,6 +65,9 @@ python ./python_code/McSplicer.py \
 		--prefix OUT_FILE_PREFIX
 
   ```
+  
+  
+Sample data and usage examples can be found at `./examples` subfolder.
 
 ### Output: ###
 
