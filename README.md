@@ -43,13 +43,15 @@ Initially, you need as inputs:
 
 You can run McSplicer easily in 3 steps:
 
-1. Run exonRefine to refine the set of exons into non-overlapping segments.
+1. Run exonRefine to refine the set of exons into non-overlapping, contiguous subexonic regions, i.e., signatures.
 
 ```shell
 ./bin/exonRefine  <annotation.gtf> --prefix OUTPUT_PREFIX
 ```
 
-2. Run SigCount to parse short RNA-seq read alignments and generate signature counts.
+2. Run SigCount to parse short RNA-seq read alignments and generate signature counts, i.e., the number of reads mapped to each distinct signature. For example, in the figure above we have have 16 reads mapped to the first signature which represents the first exons in each of the three transcripts.
+
+
 ```shell
  ./bin/sigcount_se <alignments.bam> <annotation_refined.gtf> <outfile-prefix>
 ```
