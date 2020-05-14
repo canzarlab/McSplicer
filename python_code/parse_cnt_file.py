@@ -7,7 +7,7 @@ __copyright__   = "Copyright 2017, McSplicer"
 
 
 import os
-from pandas import *
+from collections import defaultdict
 
 def parse_cnt_file(filename, paired_end = False):
     
@@ -17,35 +17,42 @@ def parse_cnt_file(filename, paired_end = False):
         subpath_freq_list -> the frequency of each read
     """
     
-    if not paired_end:
-        
-        with open(filename) as f:
-            cnt_data = f.readlines()
+    with open(filename) as f:
+        cnt_data = f.readlines()
 
-        subpath_list = []
-        subpath_freq_list = []
 
-        for line in cnt_data:
-            if line.startswith('#'):
-                continue
-            entry = line.split()
-            subpath_list.append([int(i) for i in entry[0].split('-')])
-            subpath_freq_list.append(float(entry[1]))
-        
-        return subpath_list, subpath_freq_list
+    subpath_list = []
+    subpath_freq_list = []
     
-    else:
-        cnt_data = read_csv(filename, delim_whitespace=True, header=None)
-        subpath_l_list = []
-        subpath_r_list = []
-        subpath_freq_list = []
-        for _,entry in cnt_data.iterrows():
+    subpath_dict = defaultdict(int)
+    
+    for line in cnt_data:
+        
+            
+        if line.startswith('#'):
+            continue
+        
+        if line.find('^') == -1:
+            # single end read
+            entry = line.split()
+            subpath_dict[entry[0]] += float(entry[1])
 
-            s_l = entry[0].split('^')[0] # Left suppath
-            s_r = entry[0].split('^')[1] # Right ssubpath
-            subpath_l_list.append([int(i) for i in s_l.split('-')])
-            subpath_r_list.append([int(i) for i in s_r.split('-')])
-            subpath_freq_list.append(float(entry[1]))
+        else:
+            # Left and right suppaths
+            entry = line.split()
+            s_l,s_r = entry[0].split('^')             
+            read_count = float(entry[1])
+            subpath_dict[s_l] += read_count
+            subpath_dict[s_r] += read_count
+            
 
-        return subpath_l_list,subpath_r_list, subpath_freq_list
+            
+    for key in subpath_dict:
+        subpath = [int(i) for i in key.split('-')]
+        subpath_list.append(subpath)
+        subpath_freq_list.append(subpath_dict[key])
+            
+            
+        
+    return subpath_list, subpath_freq_list
 

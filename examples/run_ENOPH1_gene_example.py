@@ -17,8 +17,8 @@ os.system("../bin/exonRefine  ./gtf/ENOPH1_S5.gtf  -p ./gtf/ENOPH1_S5_refined")
 os.system("../bin/exonRefine  ./gtf/ENOPH1_S36.gtf  -p ./gtf/ENOPH1_S36_refined")
 
 print '\n*************Second, run sigCount to generate signature counts from read bam files*************\n'
-os.system("../bin/sigcount_se ./bam/ENOPH1_S36.bam ./gtf/ENOPH1_S36_refined.gtf ./signature_counts/ENOPH1_S36")
-os.system("../bin/sigcount_se ./bam/ENOPH1_S5.bam ./gtf/ENOPH1_S5_refined.gtf ./signature_counts/ENOPH1_S5")
+os.system("../bin/sigcount ./bam/ENOPH1_S36.bam ./gtf/ENOPH1_S36_refined.gtf ./signature_counts/ENOPH1_S36")
+os.system("../bin/sigcount ./bam/ENOPH1_S5.bam ./gtf/ENOPH1_S5_refined.gtf ./signature_counts/ENOPH1_S5")
 
 
 
