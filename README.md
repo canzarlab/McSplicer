@@ -1,8 +1,6 @@
 McSplicer
 =========
-**McSplicer** is a probabilistic model for estimating splice site usages, rather than modeling an individual outcome of a process such as exon skipping. McSplicer is based on gene-wide usage of splice sites. We assume that potential 5' and 3' splice sites are given. This information can be obtained from annotation databases or estimated from RNA-seq reads by running existing assemblers.  Those potential splice sites partition a gene into a sequence of segments. We introduce a sequence of hidden variables, each of which indicates whether a corresponding segment is part of a transcript. We model the splicing process by assuming that this sequence of hidden variables follows an inhomogeneous Markov chain, hence the name **M**arkov **c**hain **Splicer**. The parameters in the model are interpreted as splice site usage, i.e., &Theta;=(&Pi;,p<sub>1</sub>,...,p<sub>Ms</sub>,q<sub>1</sub>,q<sub>2</sub>,...,q<sub>Me</sub>),
-where &Pi; is the initial probability, and <i>Ms</i> and <i>Me</i> are the total number of 3' start and 5' end sites, respectively. We use **EM algorithm** to
-maximize the likelihood of &Theta;. Using splice site estimates, one can describe the splicing processes, and estimate the probabilities of various local splicing events.
+**McSplicer** is a probabilistic model for estimating splice site usages, rather than modeling an individual outcome of a process such as exon skipping. McSplicer is based on gene-wide usage of splice sites. We assume that potential 5' and 3' splice sites are given. This information can be obtained from annotation databases or estimated from RNA-seq reads by running existing assemblers.  Those potential splice sites partition a gene into a sequence of segments. We introduce a sequence of hidden variables, each of which indicates whether a corresponding segment is part of a transcript. We model the splicing process by assuming that this sequence of hidden variables follows an inhomogeneous Markov chain, hence the name **M**arkov **c**hain **Splicer**. The parameters in the model are interpreted as splice site usages. We use **EM algorithm** to maximize the likelihood of these parameters. Using splice site estimates, one can describe the splicing processes, and estimate the probabilities of various local splicing events.
 
 
 
@@ -82,8 +80,6 @@ The output csv file contains the bootstrap step, splice site index, gene strand,
  
  Splice site index column represents the index of 3' start or 5' end splice sites as they appear in a gene according to their chronological order, e.g., s<sub>0</sub>, s<sub>1</sub>,..., e<sub>0</sub>, e<sub>1</sub>,.. see the figure above for illustration.
  
- The output of McSplicer is the likelihood of the parameters:
-(&Pi;,p<sub>1</sub>,...,p<sub>Ms</sub>,q<sub>1</sub>,q<sub>2</sub>,...,q<sub>Me</sub>) which can be interpreted as  splice site usage estimates.
 
 
 McSplicer developers:
