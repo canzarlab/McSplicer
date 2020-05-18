@@ -11,7 +11,11 @@ Here we run McSplicer on an example of ENOPH1 gene obtained from two Autism pati
 All autism patient samples are available [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-7351/samples/?s_page=1&s_pagesize=25).
 
 
+To run this example:
 
+``` 
+python2 run_ENOPH1_gene_example.py
+```
 
 ### Reference: ###
 
