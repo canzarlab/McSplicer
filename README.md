@@ -22,7 +22,8 @@ git clone https://github.com/canzarlab/McSplicer.git
 You can execute the script:
 
 ```shell
-python ./python_code/McSplicer.py --help
+cd McSplicer/
+python2 ./python_code/McSplicer.py --help
 ```
 
 
@@ -57,7 +58,7 @@ You can run McSplicer easily in 3 steps:
 		
 3. Run McSplucer to get splice site usage estimates. 
 ```shell
-python ./python_code/McSplicer.py \
+python2 ./python_code/McSplicer.py \
 		--gtf REFINED_GTF \
 		--count_file SE_SIGNATURE_COUNT \
 		--gene_id GENE_ID\
