@@ -60,7 +60,7 @@ You can run McSplicer easily in 3 steps:
 ```shell
 python2 ./python_code/McSplicer.py \
 		--gtf REFINED_GTF \
-		--count_file SE_SIGNATURE_COUNT \
+		--count_file SIGNATURE_COUNT_FILE \
 		--gene_id GENE_ID\
 		--out_dir OUTPUT_DIRECTORY\
 		--bootstraps NUM_OF_BOOSTRAPS\
