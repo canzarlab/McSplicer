@@ -16,7 +16,7 @@ Using this software
 ## Installation<a name="installation"></a>
 
 ```shell
-git clone https://github.com/shimlab/McSplicer.git
+git clone https://github.com/canzarlab/McSplicer.git
 ```
 
 You can execute the script:
