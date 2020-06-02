@@ -481,7 +481,8 @@ def get_args():
     #parser.add_argument('--add_start_end_fake_nodes', type=int,default=0,help='Add a reference points at the start and end of each gene.')
     #parser.add_argument('--use_junction_reads_for_end_site_estimates',type=int,default=0,help='Compute end site probabilities via junction reads data.')
     parser.add_argument('--prefix', type=str, default="", help='Output file prefix.')
-    args = parser.parse_args()
+    #args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
 
     return args
 
