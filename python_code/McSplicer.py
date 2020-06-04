@@ -475,8 +475,8 @@ def get_args():
     parser.add_argument('--count_file', type=str, help='Input read count file (generated from bam file).', required=True)
     parser.add_argument('--out_dir', type=str, required=True,help='Output directory prefix.')
     parser.add_argument('--read_len', type=str, help='Input read length.', required=True)
-    parser.add_argument('--gene_id', type=str, help='Input gene ID, use this parameter when running McSplicer on a single gene.', default = '' ,required=False)
-    parser.add_argument('--gene_list', type=str, help='Input file with gene IDs, where each gene ID is written in a separate line, e.g., gene1\\ngene2\\ngene3, use this parameter when running McSplicer on multiple genes.', default = '',required=False)
+    parser.add_argument('--gene_id', type=str, help='Input gene ID, use this parameter when running McSplicer on a single gene. Default, run on all genes provided in the gtf annotation file.', default = '' ,required=False)
+    #parser.add_argument('--gene_list', type=str, help='Input file with gene IDs, where each gene ID is written in a separate line, e.g., gene1\\ngene2\\ngene3, use this parameter when running McSplicer on multiple genes.', default = '',required=False)
     parser.add_argument('--bootstraps', type=int, default="1",help='Number of bootstraps')
     #parser.add_argument('--add_start_end_fake_nodes', type=int,default=0,help='Add a reference points at the start and end of each gene.')
     #parser.add_argument('--use_junction_reads_for_end_site_estimates',type=int,default=0,help='Compute end site probabilities via junction reads data.')
@@ -514,7 +514,7 @@ if __name__ == "__main__":
     params = vars(get_args())
     gtf_file = params['gtf']
     cnt_file = params['count_file']
-    input_gene_ids_file = params['gene_list']
+    #input_gene_ids_file = params['gene_list']
     gene_id = params['gene_id']
     out_dir = params['out_dir']+'/'
     read_length = int(params['read_len'])
@@ -532,17 +532,17 @@ if __name__ == "__main__":
 
     gene_list = []
 
-    if input_gene_ids_file != '':
-	gene_list = read_gene_list(input_gene_ids_file)
-    
-    elif gene_id != '':
-	gene_list.append(gene_id)
-
-    else:
-	print 'Neither gene_id nor gene_list was provided.\nExiting McSplicer.'
-
+    #if input_gene_ids_file != '':
+	#gene_list = read_gene_list(input_gene_ids_file)
 
     all_gene_dict = get_all_genes_dict(gtf_file) # all gene data dictionary
+    
+    if gene_id != '':
+	gene_list.append(gene_id)
+    else:
+	gene_list = [gene_id for gene_id in all_gene_dict]
+
+    
     
     for gene_id in gene_list:
         
