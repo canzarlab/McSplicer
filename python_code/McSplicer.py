@@ -359,13 +359,13 @@ def run_EM_bootstrap( cnt_file, gene_id, no_steps, read_length,gene_datalist,dis
             for m in range(1,len(start_sites_dict)):
                 Ism = get_index_in_loc_list('s'+str(m))-1
                 
-                if (lp_out[Ism] + ls_in[Ism+1]) == 0:
+                if Ism+1 >= len(ls_in) or (lp_out[Ism] + ls_in[Ism+1]) == 0:
                     #print "Division by zero", 'Ism=',Ism,'m=',m
                     A[m] = 0.
                 else:
                     A[m] /= (lp_out[Ism] + ls_in[Ism+1])
             
-                if (lp_out[Ism] + ls_out[Ism+1]) == 0:
+                if Ism+1 >= len(ls_in) or (lp_out[Ism] + ls_out[Ism+1]) == 0:
                     #print "Division by zero", 'Ism=',Ism,'m=',m
                     B[m] = 0.
                 else:
