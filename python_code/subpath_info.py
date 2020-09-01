@@ -146,17 +146,18 @@ def compute_binary_and_startend_list(first_most_start,last_most_end,subpath_loc_
     start_end_node_list = []
     try:
         for i in range(loc_index_dict[first_most_start],loc_index_dict[last_most_end]+1):
-            if loc_list[i] in start_sites_dict:
-                start_end_node_list.append('s'+str(start_sites_dict[loc_list[i]]))
-            elif loc_list[i] in end_sites_dict:
-                start_end_node_list.append('e'+str(end_sites_dict[loc_list[i]]))
-            else:
-                print "Error2: \nfile -> subpath_info.py \nUndefined Location-> ",loc_list[i]
+            if i < len(loc_list):
+                if loc_list[i] in start_sites_dict:
+                    start_end_node_list.append('s'+str(start_sites_dict[loc_list[i]]))
+                elif loc_list[i] in end_sites_dict:
+                    start_end_node_list.append('e'+str(end_sites_dict[loc_list[i]]))
+                else:
+                    print "Error2: \nfile -> subpath_info.py \nUndefined Location-> ",loc_list[i]
 
     except IndexError as error:
-        print 'Index Error at subpath_info.py'
+        print 'subpath_info.py:'
         print error
-        print 'i=%d, j=%d'%(i,j)
+        #print 'i=%d, j=%d'%(i,j)
             
 
 
