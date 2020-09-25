@@ -1,6 +1,6 @@
 
 
-## generate_genomewide_reads_polyester.R (Derek, modified by Israa)
+## generate_genomewide_reads_polyester.R
 
 Simple script to simulates single- or paired-end reads (genomewide) using polyester.
 
