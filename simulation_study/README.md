@@ -4,10 +4,11 @@
 
 We ran the following R script to simulates single-end reads for our benchmark analyses.
 
-We used <a target="_blank" href="https://github.com/alyssafrazee/polyester">Polyester</a>.<br/> software to simulate reads from a human transcriptome (Homo\_sapiens.GRCh38.91) with abundances obtained from the RNA-experiment GEO accession GSM3094221. Ground truth abundances are available in SRR6987574\_groundtruth.txt.
+We used <a target="_blank" href="https://github.com/alyssafrazee/polyester">Polyester</a> software to simulate reads from a human transcriptome (Homo\_sapiens.GRCh38.91) with abundances obtained from the RNA-experiment GEO accession GSM3094221 and computed by RSEM. Ground truth abundances are available in SRR6987574\_groundtruth.txt.
 
 **Input**: <br/> 1. Ground truth file: tab seperated file contains the trascript ids (column header should be transcript_id) and the corresponding abundance estimates including read counts. This scripts uses the read count (column index 5) and multiply it by scale parameter, however it can be modified to use TPM values instead. make sure to modify the code to match your file format. <br/>
-2. cDNA fasta sequence file, you can download Homo_sapiens.GRCh38.91.cdna.fa from <a target="_blank" href=http://www.ensembl.org/Homo_sapiens/">Ensembl (Homo sapiens)</a>.<br/><br/>
+2. cDNA fasta sequence file, you can download Homo_sapiens.GRCh38.91.cdna.fa from:
+<a target="_blank" href="http://www.ensembl.org/Homo_sapiens">Ensembl (Homo sapiens)</a>.<br/>
 3. Total number of reads. <br/>
 4. Output directory, make sure it has enough space. <br/>
 5. TRUE or FALSE (capitalized) whether to simulate paired-end reads or single-end reads. <br/>
