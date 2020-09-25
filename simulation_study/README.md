@@ -4,7 +4,7 @@
 
 
 
-We used <a target="_blank" href="https://github.com/alyssafrazee/polyester">Polyester</a> software to simulate reads from a human transcriptome (Homo\_sapiens.GRCh38.91) with abundances obtained from the RNA-experiment GEO accession GSM3094221 and computed by RSEM. Ground truth abundances are available in SRR6987574\_groundtruth.txt.
+We used <a target="_blank" href="https://github.com/alyssafrazee/polyester">Polyester</a> package to simulate reads from a human transcriptome (Homo\_sapiens.GRCh38.91) with abundances obtained from the RNA-experiment GEO accession GSM3094221 and computed by RSEM. Ground truth abundances are available in SRR6987574\_groundtruth.txt.
 
 We ran generate_RNAseq_reads_polyester.R script to simulates single-end RNA-seq reads for our benchmark analyses.
 
