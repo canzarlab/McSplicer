@@ -27,7 +27,7 @@ Check <a target="_blank" href="https://github.com/alyssafrazee/polyester#output"
 You have to install the following R packages: polyester, Biostrings.<br/>
 Please check the documentation of simulate_experiment function from polyester.<br/> 
 In this script no fold change is specified. <br/>
-Tested on R version 3.5.1.
+Tested on R version 3.5
 
 To simulate 50 million short single-end RNA-seq reads of length 100bp:
 ```
