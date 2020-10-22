@@ -25,7 +25,7 @@ os.system("../bin/sigcount ./bam/ENOPH1_S5.bam ./gtf/ENOPH1_S5_refined.gtf ./sig
 print('\n*************Third, run McSplicer*************\n')
 
 ## Example #1. ENOPH1 gene, exon skipping in the mutated sample, see the estimate of splice site at chromosome 4, splice site locus: 83378068
-os.system("python3 ../python3_code/McSplicer.py \
+os.system("python3 ../python_scripts/McSplicer.py \
 		--gtf ./gtf/ENOPH1_S36_refined.gtf \
 		--count_file ./signature_counts/ENOPH1_S36.cnt \
 		--gene_id ENSG00000145293\
@@ -34,7 +34,7 @@ os.system("python3 ../python3_code/McSplicer.py \
 		--prefix mutated")
 
 ## Example #2. ENOPH1 gene, exon not skipped in the control sample, see the estimate of splice site at chromosome 4, splice site locus: 83378068
-os.system("python3 ../python3_code/McSplicer.py \
+os.system("python3 ../python_scripts/McSplicer.py \
 		--gtf ./gtf/ENOPH1_S5_refined.gtf \
 		--count_file ./signature_counts/ENOPH1_S5.cnt \
 		--gene_id ENSG00000145293 \
