@@ -285,11 +285,11 @@ def run_EM_bootstrap( cnt_file, gene_id, no_steps, read_length,gene_datalist,dis
         
         prev_likelihood = 0.
         curr_likelihood = 0.
-        num_iter = 200
+        num_iter = 250
         step = 0
         count = 0
-        max_count = 15
-        epsilon = 1e-3
+        max_count = 30
+        epsilon = 1e-4
         offset_val = 0.0001 # to avoid division by zero error
         
         ###################### Step 5: Run EM
@@ -477,7 +477,7 @@ def get_args():
     parser.add_argument('--read_len', type=str, help='Input read length.', required=True)
     parser.add_argument('--gene_id', type=str, help='Input gene ID, use this parameter when running McSplicer on a single gene. Default, run on all genes provided in the gtf annotation file.', default = '' ,required=False)
     #parser.add_argument('--gene_list', type=str, help='Input file with gene IDs, where each gene ID is written in a separate line, e.g., gene1\\ngene2\\ngene3, use this parameter when running McSplicer on multiple genes.', default = '',required=False)
-    parser.add_argument('--bootstraps', type=int, default="1",help='Number of bootstraps')
+    parser.add_argument('--bootstraps', type=int, default="0",help='Number of bootstraps')
     #parser.add_argument('--add_start_end_fake_nodes', type=int,default=0,help='Add a reference points at the start and end of each gene.')
     #parser.add_argument('--use_junction_reads_for_end_site_estimates',type=int,default=0,help='Compute end site probabilities via junction reads data.')
     parser.add_argument('--prefix', type=str, default="", help='Output file prefix.')
