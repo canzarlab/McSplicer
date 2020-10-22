@@ -76,12 +76,12 @@ def populate_PZ(q_arr,p_arr):
     
     i = 1
     for location in loc_list[1:-1]: # We skip the very first start site and the very last end site, see Figure 1 in RNASPlicing.pdf 
-        if location in start_sites_dict.keys():
+        if location in list(start_sites_dict.keys()):
             PZ[i] = PZ[i-1]*1 + (1-PZ[i-1])*(p_arr[start_sites_dict[location]]) # See equation 29
-        elif location in end_sites_dict.keys():
+        elif location in list(end_sites_dict.keys()):
             PZ[i] = PZ[i-1]*(1-q_arr[end_sites_dict[location]]) + (1-PZ[i-1])*0 #TODO:- remove 0
         else:
-            print "Error: populate_PZ"
+            print("Error: populate_PZ")
         i += 1
         
     return PZ

@@ -118,7 +118,7 @@ def builder_start_01(binary_list,start_end_list, F_s, sm, w_s,p_arr, q_arr, f00,
         try:
             return_val = ((1-p_arr[0])*f00[0][Ism] + p_arr[0]*f10[0][Ism])* p_arr[sm_index]*f11[Ism+1][F_s]*w_s
         except IndexError:
-            print 'Warning: Index out of range in case 125 (cases code new)'
+            print('Warning: Index out of range in case 125 (cases code new)')
             return_val = 0.            
             
     
@@ -129,7 +129,7 @@ def builder_start_01(binary_list,start_end_list, F_s, sm, w_s,p_arr, q_arr, f00,
         try:
             return_val =  ((1-p_arr[0])*f01[0][F_s] + p_arr[0]*f11[0][F_s])* p_arr[sm_index]*f10[L_s][Ism]*w_s
         except IndexError:
-            print 'Warning: Index out of range in case 131 (cases code new)'
+            print('Warning: Index out of range in case 131 (cases code new)')
             return_val = 0.
         
     elif F_s <= Ism and Ism < L_s: 
@@ -142,7 +142,7 @@ def builder_start_01(binary_list,start_end_list, F_s, sm, w_s,p_arr, q_arr, f00,
                 return_val =  ((1-p_arr[0])*f01[0][F_s] + p_arr[0]*f11[0][F_s])*w_s
                 
             except IndexError:                
-                print 'Warning: Index out of range in case 137 (cases code new)'
+                print('Warning: Index out of range in case 137 (cases code new)')
                 return_val = 0.
         #else:
             #print "builder_start_01: "+err_case4
@@ -196,7 +196,7 @@ def builder_start_00(binary_list,start_end_list, F_s, sm, w_s,p_arr, q_arr, f00,
         try:
             return_val =  ((1-p_arr[0])*f00[0][Ism] + p_arr[0]*f10[0][Ism])*(1-p_arr[sm_index])*f01[Ism+1][F_s]*w_s
         except IndexError:                
-            print 'Warning: Index out of range in case 145 (cases code new)'
+            print('Warning: Index out of range in case 145 (cases code new)')
             return_val = 0.
             
         #print 'return_val=',return_val
@@ -207,7 +207,7 @@ def builder_start_00(binary_list,start_end_list, F_s, sm, w_s,p_arr, q_arr, f00,
         try:
             return_val =  ((1-p_arr[0])*f01[0][F_s] + p_arr[0]*f11[0][F_s])*(1-p_arr[sm_index])*f10[L_s][Ism]*w_s 
         except IndexError:                
-            print 'Warning: Index out of range in case 151 (cases code new)'
+            print('Warning: Index out of range in case 151 (cases code new)')
             return_val = 0.
             
         
@@ -221,7 +221,7 @@ def builder_start_00(binary_list,start_end_list, F_s, sm, w_s,p_arr, q_arr, f00,
             try:
                 return_val =  ((1-p_arr[0])*f01[0][F_s] + p_arr[0]*f11[0][F_s])*w_s
             except IndexError:
-                print 'Warning: Index out of range in case 157 (cases code new)'
+                print('Warning: Index out of range in case 157 (cases code new)')
                 return_val = 0.
             
             
@@ -278,7 +278,7 @@ def builder_end_11(binary_list,start_end_list, F_s, em, w_s,p_arr, q_arr, f00, f
             return_val =  ((1-p_arr[0])*f01[0][Iem] + p_arr[0]*f11[0][Iem])*(1-q_arr[em_index])*f11[Iem+1][F_s]*w_s
             
         except IndexError:
-            print 'Warning: Index out of range in case 163 (cases code new)'
+            print('Warning: Index out of range in case 163 (cases code new)')
             return_val = 0.
         
         
@@ -291,7 +291,7 @@ def builder_end_11(binary_list,start_end_list, F_s, em, w_s,p_arr, q_arr, f00, f
             return_val =  ((1-p_arr[0])*f01[0][F_s] + p_arr[0]*f11[0][F_s])*(1-q_arr[em_index])*f11[L_s][Iem]*w_s
             
         except IndexError:
-            print 'Warning: Index out of range in case 167 (cases code new)'
+            print('Warning: Index out of range in case 167 (cases code new)')
             return_val = 0.
             
         
@@ -305,7 +305,7 @@ def builder_end_11(binary_list,start_end_list, F_s, em, w_s,p_arr, q_arr, f00, f
                 return_val =  ((1-p_arr[0])*f01[0][F_s] + p_arr[0]*f11[0][F_s])*w_s
                 
             except IndexError:
-                print 'Warning: Index out of range in case 167 (cases code new)'
+                print('Warning: Index out of range in case 167 (cases code new)')
                 return_val = 0.
             
             
@@ -361,7 +361,7 @@ def builder_end_10(binary_list,start_end_list, F_s, em, w_s,p_arr, q_arr, f00, f
         try:
             return_val =  ((1-p_arr[0])*f01[0][Iem] + p_arr[0]*f11[0][Iem])*q_arr[em_index]*f01[Iem+1][F_s]*w_s
         except IndexError:
-            print 'Warning: Index out of range in case 177 (cases code new)'
+            print('Warning: Index out of range in case 177 (cases code new)')
             return_val = 0.
     
     # Case2: exon end site em appears right side of a subpath s
@@ -371,7 +371,7 @@ def builder_end_10(binary_list,start_end_list, F_s, em, w_s,p_arr, q_arr, f00, f
         try:
             return_val =  ((1-p_arr[0])*f01[0][F_s] + p_arr[0]*f11[0][F_s])*q_arr[em_index]*f11[L_s][Iem]*w_s
         except IndexError:
-            print 'Warning: Index out of range in case 181 (cases code new)'
+            print('Warning: Index out of range in case 181 (cases code new)')
             return_val = 0.   
            
         
@@ -385,7 +385,7 @@ def builder_end_10(binary_list,start_end_list, F_s, em, w_s,p_arr, q_arr, f00, f
                 return_val =  ((1-p_arr[0])*f01[0][F_s] + p_arr[0]*f11[0][F_s])*w_s
                 
             except IndexError:
-                print 'Warning: Index out of range in case 185 (cases code new)'
+                print('Warning: Index out of range in case 185 (cases code new)')
                 return_val = 0.  
 
                 

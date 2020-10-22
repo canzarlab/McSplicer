@@ -145,11 +145,11 @@ def get_min_max_frag_length(subpath_l,subpath_r,left_frag_len_list,right_frag_le
 
 
             
-    print '>>left min, max',min_dict_left,max_dict_left
-    print '>>right min,max',min_dict_right,max_dict_right
+    print('>>left min, max',min_dict_left,max_dict_left)
+    print('>>right min,max',min_dict_right,max_dict_right)
         
         
-    keys = min_dict_right.keys()+ min_dict_left.keys()
+    keys = list(min_dict_right.keys())+ list(min_dict_left.keys())
     keys = unique(keys)
 
     min_frag_length = 0
@@ -185,6 +185,6 @@ def get_min_max_frag_length(subpath_l,subpath_r,left_frag_len_list,right_frag_le
     if subpath_l == subpath_r:
         min_frag_length = read_length # Left and right read overlap
         
-    print min_frag_length, max_frag_length
+    print(min_frag_length, max_frag_length)
 
     return min_frag_length, max_frag_length

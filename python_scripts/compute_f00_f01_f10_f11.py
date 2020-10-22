@@ -84,7 +84,7 @@ def compute_f00_f01(p_arr, q_arr):
                     f00[i][j] = 1.
                     f01[i][j] = 0.
                 else:
-                    print "Error1: \nfile -> compute_f00_f01_f10_f11.py \nMethod -> compute_f00_f01"
+                    print("Error1: \nfile -> compute_f00_f01_f10_f11.py \nMethod -> compute_f00_f01")
             elif i < j-1:
                 # segements j-1 and j seperated by start site
                 if location in start_sites_dict:
@@ -95,7 +95,7 @@ def compute_f00_f01(p_arr, q_arr):
                     f00[i][j] = f00[i][j-1] + f01[i][j-1]*q_arr[end_sites_dict[location]]
                     f01[i][j] = f01[i][j-1]*(1-q_arr[end_sites_dict[location]])
                 else:
-                    print "Error2: \nfile -> compute_f00_f01_f10_f11.py \nMethod -> compute_f00_f01"
+                    print("Error2: \nfile -> compute_f00_f01_f10_f11.py \nMethod -> compute_f00_f01")
             elif i == j:
                 f00[i][j] = 1.
                 f01[i][j] = 0. 
@@ -131,7 +131,7 @@ def compute_f10_f11(p_arr, q_arr):
                     f10[i][j] = q_arr[end_sites_dict[location]]
                     f11[i][j] = 1-q_arr[end_sites_dict[location]]
                 else:
-                    print "Error3: \nfile -> compute_f00_f01_f10_f11.py \nMethod -> compute_f10_f11"
+                    print("Error3: \nfile -> compute_f00_f01_f10_f11.py \nMethod -> compute_f10_f11")
             elif i < j-1:
                 # segements j-1 and j seperated by start site
                 if location in start_sites_dict:
@@ -142,7 +142,7 @@ def compute_f10_f11(p_arr, q_arr):
                     f10[i][j] = f10[i][j-1] + f11[i][j-1]*q_arr[end_sites_dict[location]]
                     f11[i][j] = f11[i][j-1]*(1-q_arr[end_sites_dict[location]])
                 else:
-                    print "Error4: \nfile -> compute_f00_f01_f10_f11.py \nMethod -> compute_f10_f11"
+                    print("Error4: \nfile -> compute_f00_f01_f10_f11.py \nMethod -> compute_f10_f11")
             elif i == j:
                 f10[i][j] = 0.
                 f11[i][j] = 1.

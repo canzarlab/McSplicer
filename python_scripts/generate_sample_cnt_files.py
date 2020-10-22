@@ -88,7 +88,7 @@ def create_cnt_files(gtf_file,total_num_files,total_samples,in_DIR,out_DIR):
 
         strand_dir,loc_index_dict, start_sites_dict, end_sites_dict, subexon_ids_dict,trans_id_subexons_dict = parse_gtf_file_general(in_DIR+gtf_file)
 
-        trans_subexon_list = trans_id_subexons_dict.values() # list of subexon ids for each transcript
+        trans_subexon_list = list(trans_id_subexons_dict.values()) # list of subexon ids for each transcript
         trans_subexon_list.sort()
 
         # Initial vars
@@ -135,7 +135,7 @@ def create_cnt_files(gtf_file,total_num_files,total_samples,in_DIR,out_DIR):
 
         ## write to cnt file
         file = open(out_file,'w')  
-        for key,val in read_freq_dict.iteritems():    
+        for key,val in read_freq_dict.items():    
             file.write(key+' '+str(val)+'\n') 
         file.close() 
 
@@ -149,7 +149,7 @@ def main():
     
     for gtf_file in gtf_file_list:
         
-        print 'Generating count files for',gtf_file.split('.')[0].upper()
+        print('Generating count files for',gtf_file.split('.')[0].upper())
         
         out_DIR = in_DIR+gtf_file.split('.')[0].upper()+'/'
         
@@ -158,7 +158,7 @@ def main():
         
         create_cnt_files(gtf_file,total_num_files,total_samples,in_DIR,out_DIR)
         
-        print 'Output is written to',out_DIR
+        print('Output is written to',out_DIR)
 
 
 main()

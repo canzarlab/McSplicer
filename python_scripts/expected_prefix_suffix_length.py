@@ -81,7 +81,7 @@ def get_length_list(read_length):
 	
     # Subtract the read length from the last segment(s)
 	read_length -= 1
-	for j in xrange(len(length_list)-1, -1 ,-1):
+	for j in range(len(length_list)-1, -1 ,-1):
 		length_list[j] = length_list[j] - read_length 
 		if length_list[j] >= 0: 
 			break
@@ -113,7 +113,7 @@ def get_expected_prefix_length(length_list,PZ,f00,f01,f10,f11):
 		if PZ[i] == 0 or 1-PZ[i] == 0:
 			lp_in[i] = 0
 			lp_out[i] = 0
-			print 'get_expected_prefix_length: Division by zero for i =',i
+			print('get_expected_prefix_length: Division by zero for i =',i)
 			continue
 		if PZ[i] > 0 :
 			lp_in[i] = length_list[i] + (lp_in[i-1]*PZ[i-1]*f11[i-1][i])/PZ[i] + (lp_out[i-1]*(1-PZ[i-1])*f01[i-1][i])/PZ[i]

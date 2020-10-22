@@ -195,9 +195,9 @@ def get_gene_transcripts_info(gene_id,abundance_file):
         start_sites_list1 = sorted(start_sites_dict1.keys())
         loc_list1 = sorted(loc_index_dict1.keys())
     else:
-        end_sites_list1 = sorted(end_sites_dict1.keys(), reverse=True)
-        start_sites_list1 = sorted(start_sites_dict1.keys(), reverse=True)
-        loc_list1 = sorted(loc_index_dict1.keys(), reverse=True)
+        end_sites_list1 = sorted(list(end_sites_dict1.keys()), reverse=True)
+        start_sites_list1 = sorted(list(start_sites_dict1.keys()), reverse=True)
+        loc_list1 = sorted(list(loc_index_dict1.keys()), reverse=True)
 
     set_global_vars_in_subpath(strand_dir1,loc_index_dict1,start_sites_dict1,end_sites_dict1,subexon_ids_dict1,{},end_sites_list1,start_sites_list1,loc_list1)
     
@@ -214,7 +214,7 @@ def get_gene_transcripts_info(gene_id,abundance_file):
         #if tx_id not in tx_dict:
         tx_dict[tx_id] = [tx_abund,subexon_list,binary_path,start_end_path]
         
-    binary_full_path, start_end_full_path = get_subpath_info(subexon_ids_dict1.keys())
+    binary_full_path, start_end_full_path = get_subpath_info(list(subexon_ids_dict1.keys()))
 
     
     
@@ -236,7 +236,7 @@ def write_ground_truth_prob_tofile(out_DIR, gene_id,loc_prob_dict):
                     "sample_13","sample_14","sample_15","sample_16","sample_17","sample_18","sample_19","sample_20"])
 
 
-    for key in loc_prob_dict.keys():
+    for key in list(loc_prob_dict.keys()):
         row = []
         loc = int(key.split('_')[0])
         idx = key.split('_')[1]

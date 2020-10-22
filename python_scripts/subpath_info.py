@@ -152,11 +152,11 @@ def compute_binary_and_startend_list(first_most_start,last_most_end,subpath_loc_
                 elif loc_list[i] in end_sites_dict:
                     start_end_node_list.append('e'+str(end_sites_dict[loc_list[i]]))
                 else:
-                    print "Error2: \nfile -> subpath_info.py \nUndefined Location-> ",loc_list[i]
+                    print("Error2: \nfile -> subpath_info.py \nUndefined Location-> ",loc_list[i])
 
     except IndexError as error:
-        print 'subpath_info.py:'
-        print error
+        print('subpath_info.py:')
+        print(error)
         #print 'i=%d, j=%d'%(i,j)
             
 
@@ -210,7 +210,7 @@ def get_subpath_info(subpath):
 
 
     if last_most_end not in loc_index_dict:
-        print "Error1: \nfile -> subpath_info.py \nSubpath doesn't have an end!\nBreaking the loop -> ",subpath
+        print("Error1: \nfile -> subpath_info.py \nSubpath doesn't have an end!\nBreaking the loop -> ",subpath)
         return [],[]
     
     return compute_binary_and_startend_list(first_most_start,last_most_end,subpath_loc_list)

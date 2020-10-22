@@ -157,7 +157,7 @@ def parse_gtf_file_general(filename):
     elif strand_dir == '-':
         forward_strand = False 
     else:
-        print 'Error: Splice direction must be + or -. Undefined splice direction  -> ' + splice_ends[i]
+        print('Error: Splice direction must be + or -. Undefined splice direction  -> ' + splice_ends[i])
 
     for i in range(len(subexon_start_sites)):
 
@@ -173,7 +173,7 @@ def parse_gtf_file_general(filename):
                 end_sites.append(subexon_end_sites[i])
             
             elif splice_ends[i] !='-': # dash means internal exon, just ignore it, otherwise show error
-                print 'Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_ends[i]
+                print('Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_ends[i])
 
         elif forward_strand == True:   
             if splice_ends[i]=='R':
@@ -187,7 +187,7 @@ def parse_gtf_file_general(filename):
                 end_sites.append(subexon_end_sites[i])
                 
             elif splice_ends[i] !='-': # dash means internal exon, just ignore it, otherwise show error
-                print 'Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_ends[i]
+                print('Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_ends[i])
 
     if forward_strand == False:
         end_sites.sort(reverse=True)
@@ -320,7 +320,7 @@ def parse_gtf_file_per_gene(filename, gene_id):
     """ 
     
     if not gene_found: # if gene not found
-        print 'Error: No values returned.\nThe gene ID', gene_id, 'was not found in the gtf file,', filename
+        print('Error: No values returned.\nThe gene ID', gene_id, 'was not found in the gtf file,', filename)
         
     else:
     
@@ -334,7 +334,7 @@ def parse_gtf_file_per_gene(filename, gene_id):
         elif strand_dir == '-':
             forward_strand = False 
         else:
-            print 'Error: Splice direction must be + or -. Undefined splice direction  -> ' + splice_ends[i]
+            print('Error: Splice direction must be + or -. Undefined splice direction  -> ' + splice_ends[i])
 
         for i in range(len(subexon_start_sites)):
 
@@ -350,7 +350,7 @@ def parse_gtf_file_per_gene(filename, gene_id):
                     end_sites.append(subexon_end_sites[i])
 
                 elif splice_ends[i] != '-': # - means internal node, just ignore it, otherwise show an error
-                    print 'Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_ends[i]
+                    print('Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_ends[i])
 
             elif forward_strand == True:   
                 if splice_ends[i]=='R':
@@ -364,7 +364,7 @@ def parse_gtf_file_per_gene(filename, gene_id):
                     end_sites.append(subexon_end_sites[i])
                 
                 elif splice_ends[i] != '-':
-                    print 'Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_ends[i]
+                    print('Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_ends[i])
 
         if forward_strand == False:
             end_sites.sort(reverse=True)

@@ -12,7 +12,6 @@ __copyright__   = "Copyright 2017, McSplicer"
 
 import os
 import sys
-from pandas import *
 import numpy as np
 from parse_gtf_file import *
 from parse_cnt_file import *
@@ -56,6 +55,6 @@ if strand_dir == '+' :
     start_sites_list = sorted(start_sites_dict.keys())
     loc_list = sorted(loc_index_dict.keys())
 else:
-    end_sites_list = sorted(end_sites_dict.keys(), reverse=True)
-    start_sites_list = sorted(start_sites_dict.keys(), reverse=True)
-    loc_list = sorted(loc_index_dict.keys(), reverse=True)
+    end_sites_list = sorted(list(end_sites_dict.keys()), reverse=True)
+    start_sites_list = sorted(list(start_sites_dict.keys()), reverse=True)
+    loc_list = sorted(list(loc_index_dict.keys()), reverse=True)

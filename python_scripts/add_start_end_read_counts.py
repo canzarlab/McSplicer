@@ -26,16 +26,16 @@ def preprocess_read_counts(subexon_ids_dict,subexon_trans_ids_dict,read_length,s
     
     
     
-    internal_nodes = [sublist[1:-1] for sublist in subexon_trans_ids_dict.values() if len(subexon_trans_ids_dict.values()) > 2]
+    internal_nodes = [sublist[1:-1] for sublist in list(subexon_trans_ids_dict.values()) if len(list(subexon_trans_ids_dict.values())) > 2]
     internal_nodes = [i for sublist in internal_nodes for i in sublist]
 
-    starting_subexons = [min(val) for key,val in subexon_trans_ids_dict.iteritems()]
+    starting_subexons = [min(val) for key,val in subexon_trans_ids_dict.items()]
     fake_first_node = min(starting_subexons)-1
 
     #print 'starting_subexons>>>',starting_subexons
     #print 'fake_first_node>>>',fake_first_node
 
-    ending_subexons = [max(val) for key,val in subexon_trans_ids_dict.iteritems()]
+    ending_subexons = [max(val) for key,val in subexon_trans_ids_dict.items()]
     fake_last_node = max(ending_subexons)+1
 
     #print 'ending_subexons>>>',ending_subexons
@@ -120,7 +120,7 @@ def preprocess_read_counts(subexon_ids_dict,subexon_trans_ids_dict,read_length,s
 
                 total_len = -read_length+1
                 node_list = []
-                for j in reversed(range(len(subpath))):
+                for j in reversed(list(range(len(subpath)))):
                     node = subpath[j]
                     node_list.append(node)
                     b1,b2 = subexon_ids_dict[node]
@@ -138,7 +138,7 @@ def preprocess_read_counts(subexon_ids_dict,subexon_trans_ids_dict,read_length,s
 
     new_subpath_list = []
     new_subpath_freq_list = []
-    for key,val in subpath_freq_dict.iteritems():
+    for key,val in subpath_freq_dict.items():
         subpath = [int(node) for node in key.split('-')]
         new_subpath_list.append(subpath)
         new_subpath_freq_list.append(val)
@@ -163,7 +163,7 @@ def add_starting_and_stopping_nodes(strand_dir,subexon_ids_dict,subexon_trans_id
     ## Appending last node
     fake_last_node = ''
     if ending_flag:
-        ending_subexons = [max(val) for key,val in subexon_trans_ids_dict.iteritems()]
+        ending_subexons = [max(val) for key,val in subexon_trans_ids_dict.items()]
         fake_last_node = max(ending_subexons)+1
         if strand_dir == '+' :
             start = end_sites_list[-1] + 200
@@ -186,7 +186,7 @@ def add_starting_and_stopping_nodes(strand_dir,subexon_ids_dict,subexon_trans_id
     ## Appending first node
     fake_first_node = ''
     if starting_flag:
-        starting_subexons = [min(val) for key,val in subexon_trans_ids_dict.iteritems()]
+        starting_subexons = [min(val) for key,val in subexon_trans_ids_dict.items()]
         fake_first_node = min(starting_subexons)-1
         if strand_dir == '+' :
             start = start_sites_list[0] - 200
@@ -196,11 +196,11 @@ def add_starting_and_stopping_nodes(strand_dir,subexon_ids_dict,subexon_trans_id
             end = start - 5
         
         # Shift the indices by 1 to add new indices for the fake node
-        for key,val in start_sites_dict.iteritems():
+        for key,val in start_sites_dict.items():
             start_sites_dict[key] = val + 1
-        for key,val in end_sites_dict.iteritems():
+        for key,val in end_sites_dict.items():
             end_sites_dict[key] = val + 1
-        for key,val in loc_index_dict.iteritems():
+        for key,val in loc_index_dict.items():
             loc_index_dict[key] = val + 2
         
         
@@ -216,9 +216,9 @@ def add_starting_and_stopping_nodes(strand_dir,subexon_ids_dict,subexon_trans_id
         loc_list.append(end)
         
         # Sort again
-        end_sites_list = sorted(end_sites_dict.keys(), reverse=reverse_strand)
-        start_sites_list = sorted(start_sites_dict.keys(), reverse=reverse_strand)
-        loc_list = sorted(loc_index_dict.keys(), reverse=reverse_strand)
+        end_sites_list = sorted(list(end_sites_dict.keys()), reverse=reverse_strand)
+        start_sites_list = sorted(list(start_sites_dict.keys()), reverse=reverse_strand)
+        loc_list = sorted(list(loc_index_dict.keys()), reverse=reverse_strand)
 
     return subexon_ids_dict,start_sites_dict,end_sites_dict,loc_index_dict,start_sites_list,end_sites_list,loc_list
 

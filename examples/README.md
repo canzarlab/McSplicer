@@ -14,7 +14,7 @@ All autism patient samples are available [here](https://www.ebi.ac.uk/arrayexpre
 To run this example:
 
 ``` 
-python2 run_ENOPH1_gene_example.py
+python3 run_ENOPH1_gene_example.py
 ```
 
 ### Reference: ###

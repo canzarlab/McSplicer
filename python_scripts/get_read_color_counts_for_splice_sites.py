@@ -29,9 +29,9 @@ def get_ss_usage_from_read_counts(gene_datalist):
     if strand_dir == '-':
         reverse_val = True
 
-    end_sites_list = sorted(end_sites_dict.keys(), reverse=reverse_val)
-    start_sites_list = sorted(start_sites_dict.keys(), reverse=reverse_val)
-    loc_list = sorted(loc_index_dict.keys(), reverse=reverse_val)
+    end_sites_list = sorted(list(end_sites_dict.keys()), reverse=reverse_val)
+    start_sites_list = sorted(list(start_sites_dict.keys()), reverse=reverse_val)
+    loc_list = sorted(list(loc_index_dict.keys()), reverse=reverse_val)
 
 
     #subexon_ids_dict
@@ -178,5 +178,5 @@ if __name__ == "__main__":
          writer.writerow(row)
     f.close()
 
-    print '\nOutput is written to the folder:\n\t',out_filename
+    print('\nOutput is written to the folder:\n\t',out_filename)
 

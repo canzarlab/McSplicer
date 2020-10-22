@@ -23,15 +23,14 @@ You can execute the script:
 
 ```shell
 cd McSplicer/
-python2 ./python_code/McSplicer.py --help
+python3 ./python_scripts/McSplicer.py --help
 ```
 
 
 ### Dependencies<a name="dependencies"></a>
 
-McSplicer was implemnted and tested on python 2.7, and requires only few standard packages:
-- numpy>=1.13.1
-- pandas>=0.20.3
+Python 3.6 implementation of McSplicer requires the following standard package:
+- numpy>=1.15.4
 
 ## Usage <a name="usage"></a>
 
@@ -58,7 +57,7 @@ You can run McSplicer easily in 3 steps:
 		
 3. Run McSplucer to get splice site usage estimates. 
 ```shell
-python2 ./python_code/McSplicer.py \
+python3 ./python_scripts/McSplicer.py \
 		--gtf REFINED_GTF \
 		--count_file SIGNATURE_COUNT_FILE \
 		--out_dir OUTPUT_DIRECTORY\

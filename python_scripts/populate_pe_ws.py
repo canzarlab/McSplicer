@@ -233,7 +233,7 @@ def w_prime(p_arr,q_arr,subpath_l,subpath_r,idx1,val1,val2):
     frag_len_dist = scipy.stats.norm(250, 50) # fragment length distribution
 
     if (subpath_l == subpath_r) or (subpath_l[-1] >= subpath_r[0]-1):
-        print 'Error:\nNo gap between the left and right reads'
+        print('Error:\nNo gap between the left and right reads')
         return -1
     else:
 
@@ -247,7 +247,7 @@ def w_prime(p_arr,q_arr,subpath_l,subpath_r,idx1,val1,val2):
 
         ## get the index of idx1 element in start_end_location
         for k in range(len(start_end_list)):
-            print start_end_list[k],get_index_in_loc_list(start_end_list[k])
+            print(start_end_list[k],get_index_in_loc_list(start_end_list[k]))
             if idx1 == get_index_in_loc_list(start_end_list[k]):
                 break
 
@@ -255,7 +255,7 @@ def w_prime(p_arr,q_arr,subpath_l,subpath_r,idx1,val1,val2):
 
         # 2^N tuples :- number of segments between the left and right reads
         n = len(start_end_list)-len(start_end_s_l)-len(start_end_s_r)+1
-        tuple_list = map(list, itertools.product([0, 1], repeat=n))
+        tuple_list = list(map(list, itertools.product([0, 1], repeat=n)))
 
         # Get all the unique binary lists that meet the criteria (idx1=val,idx2=val2)
         binary_subpath_list = []
@@ -301,7 +301,7 @@ def get_subexon_inbetween(s_l,s_r):
         
 
     subexons_in_between = []
-    for subexon_id in subexon_ids_dict.keys():
+    for subexon_id in list(subexon_ids_dict.keys()):
         
         if strand_dir == '+':
             if subexon_id > end_l and subexon_id < start_r:
@@ -320,7 +320,7 @@ def populate_pe_ws(q_arr,p_arr,subpath_l_list,subpath_r_list,fragment_mean,fragm
 
 
     if len(subpath_l_list) != len(subpath_r_list):
-        print 'Error: the number of left paired end reads doesn\'t match the number of right reads! '
+        print('Error: the number of left paired end reads doesn\'t match the number of right reads! ')
         return []
     
 
@@ -391,7 +391,7 @@ def populate_pe_ws(q_arr,p_arr,subpath_l_list,subpath_r_list,fragment_mean,fragm
 
             # 2^N tuples :- number of segments between the left and right reads
             n = len(start_end_list)-len(start_end_s_l)-len(start_end_s_r)+1
-            tuple_list = map(list, itertools.product([0, 1], repeat=n))
+            tuple_list = list(map(list, itertools.product([0, 1], repeat=n)))
 
             ## TODO-; check list length
             for _tuple in tuple_list:
@@ -435,11 +435,11 @@ if strand_dir == '+' :
     start_sites_list = sorted(start_sites_dict.keys())
     loc_list = sorted(loc_index_dict.keys())
 elif strand_dir == '-' :
-    end_sites_list = sorted(end_sites_dict.keys(), reverse=True)
-    start_sites_list = sorted(start_sites_dict.keys(), reverse=True)
-    loc_list = sorted(loc_index_dict.keys(), reverse=True)
+    end_sites_list = sorted(list(end_sites_dict.keys()), reverse=True)
+    start_sites_list = sorted(list(start_sites_dict.keys()), reverse=True)
+    loc_list = sorted(list(loc_index_dict.keys()), reverse=True)
 else:
-    print 'Error: unknown strand direction',strand_dir
+    print('Error: unknown strand direction',strand_dir)
 
 
 
@@ -450,5 +450,5 @@ set_global_vars_in_subpath(strand_dir,loc_index_dict,start_sites_dict,end_sites_
 
 
 ######################  Extract only the reads that belong to this gene
-subpath_l_list,subpath_r_list, subpath_freq_list = filter_subpath_list_by_subexon_ids(subpath_l_list,subpath_r_list, subpath_freq_list, subexon_ids_dict.keys())
+subpath_l_list,subpath_r_list, subpath_freq_list = filter_subpath_list_by_subexon_ids(subpath_l_list,subpath_r_list, subpath_freq_list, list(subexon_ids_dict.keys()))
 

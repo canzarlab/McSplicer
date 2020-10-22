@@ -155,36 +155,36 @@ if strand_dir == '+' :
     start_sites_list = sorted(start_sites_dict.keys())
     loc_list = sorted(loc_index_dict.keys())
 else:
-    end_sites_list = sorted(end_sites_dict.keys(), reverse=True)
-    start_sites_list = sorted(start_sites_dict.keys(), reverse=True)
-    loc_list = sorted(loc_index_dict.keys(), reverse=True)
+    end_sites_list = sorted(list(end_sites_dict.keys()), reverse=True)
+    start_sites_list = sorted(list(start_sites_dict.keys()), reverse=True)
+    loc_list = sorted(list(loc_index_dict.keys()), reverse=True)
     
 set_global_vars_in_subpath(strand_dir,loc_index_dict,start_sites_dict,end_sites_dict,subexon_ids_dict,{},end_sites_list,start_sites_list,loc_list)
 
-print 'loc_index_dict:\t\t',loc_index_dict
-print 'start_sites_dict:\t',start_sites_dict
-print 'end_sites_dict:\t\t',end_sites_dict
-print 'subexon_ids_dict:\t',subexon_ids_dict
-print 'loc_list:\t',loc_list
+print('loc_index_dict:\t\t',loc_index_dict)
+print('start_sites_dict:\t',start_sites_dict)
+print('end_sites_dict:\t\t',end_sites_dict)
+print('subexon_ids_dict:\t',subexon_ids_dict)
+print('loc_list:\t',loc_list)
 
 
 # In[6]:
 
 
-binary_full_path, start_end_full_path = get_subpath_info(subexon_ids_dict.keys())
-print binary_full_path, start_end_full_path
-print tx_node_dict
+binary_full_path, start_end_full_path = get_subpath_info(list(subexon_ids_dict.keys()))
+print(binary_full_path, start_end_full_path)
+print(tx_node_dict)
 
 
 # In[13]:
 
 
-tx1_id = tx_node_dict.keys()[0]
+tx1_id = list(tx_node_dict.keys())[0]
 tx1 = tx_node_dict[tx1_id]
 binary_path1, start_end_path1 = get_subpath_info(tx1)
 #print binary_path1, start_end_path1
 
-tx2_id = tx_node_dict.keys()[1]
+tx2_id = list(tx_node_dict.keys())[1]
 tx2 = tx_node_dict[tx2_id]
 binary_path2, start_end_path2 = get_subpath_info(tx2)
 #print binary_path2, start_end_path2
@@ -210,7 +210,7 @@ get_ground_truth_probability_vector(tx_dict,start_end_full_path,loc_list)
 
 
 if 's0' in start_end_path1:
-    print start_end_path1.index('s0')
+    print(start_end_path1.index('s0'))
 else:
-    print -1
+    print(-1)
 

@@ -60,7 +60,7 @@ def populate_ws(q_arr,p_arr,binary_subpath_list,start_end_nodes_subpath_list,sub
                     else:
                         probability = 1e-10
                         #print 'compute_ws.py  -> subpath',subpath,i,i+1
-                        print "Error3: \nfile -> compute_ws.py \nPair of 1-0 segments is seperated by start site"    
+                        print("Error3: \nfile -> compute_ws.py \nPair of 1-0 segments is seperated by start site")    
 
                 if type_site == 'e':
                     if segment_1==1 and segment_2==1:
@@ -71,7 +71,7 @@ def populate_ws(q_arr,p_arr,binary_subpath_list,start_end_nodes_subpath_list,sub
                         probability*=1
                     else:
                         probability = 1e-10
-                        print "Error4: \nfile -> compute_ws.py \nPair of 0-1 segments seperated by end site"
+                        print("Error4: \nfile -> compute_ws.py \nPair of 0-1 segments seperated by end site")
         
         w.append(probability)
 

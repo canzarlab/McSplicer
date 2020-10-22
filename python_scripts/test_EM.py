@@ -125,7 +125,7 @@ while step < num_iter:
                 D[m] += freq * builder_end_11(binary_subpath_list[i], start_end_list, Fs_list[i], em, w[i],p_arr, q_arr, f00, f01, f10, f11)/PS[i]
                                 
             else:
-                print "Unknown error"
+                print("Unknown error")
         
 
 
@@ -151,11 +151,11 @@ while step < num_iter:
         #if freq * PS[i] > 0 :
         curr_likelihood += math.log(freq * PS[i]) 
     
-    print "step", step
-    print "p_arr", p_arr
-    print "q_arr", q_arr
-    print "Prev likelihood", prev_likelihood
-    print "Curr likelihood", curr_likelihood
+    print("step", step)
+    print("p_arr", p_arr)
+    print("q_arr", q_arr)
+    print("Prev likelihood", prev_likelihood)
+    print("Curr likelihood", curr_likelihood)
     
     
     
@@ -167,7 +167,7 @@ while step < num_iter:
     step += 1
     
     if count == max_count:
-    	print "Breaking after %d iterations"%step
+    	print("Breaking after %d iterations"%step)
         break
     
     #if curr_likelihood-prev_likelihood <= epsilon:
@@ -177,10 +177,10 @@ while step < num_iter:
 
 # In[7]:
 
-print start_sites_dict
-print p_arr
-print end_sites_dict
-print q_arr
+print(start_sites_dict)
+print(p_arr)
+print(end_sites_dict)
+print(q_arr)
 
 
 # In[8]:

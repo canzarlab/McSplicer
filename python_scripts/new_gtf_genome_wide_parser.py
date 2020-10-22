@@ -13,25 +13,24 @@ __copyright__   = "Copyright 2017, McSplicer"
 
 import csv
 import numpy as np
-from pandas import *
 import time
 
 
 
 def get_all_genes_dict(gtf_file):
-    
+
     gene_dict = {}
 
-    with open(gtf_file, "rb") as f:
+    with open(gtf_file, "r") as f:
         reader = csv.reader(f, delimiter="\t")
         for line in reader:
-            if line[2] == 'subexon':    
+            if line[2] == 'subexon':
                 start_site = int(line[3])
                 end_site = int(line[4])
                 strand_dir = line[6]
-                
+
                 gene_id = ''
-		chr_id = line[0]
+                chr_id = line[0]
 
                 feature_list = line[8].split(';')
                 for feature in feature_list:
@@ -70,11 +69,11 @@ def create_location_dicts(start_sites, end_sites, strand_dir):
     start_sites_dict -> key: start location, index (helps to determine s1, s2, ...)
     end_sites_dict ->   key: end location, index (helps to determine e1, e2, ...)
     """
-    
-    loc_index_dict = {}       
-    start_sites_dict = {}     
-    end_sites_dict = {}       
-    
+
+    loc_index_dict = {}
+    start_sites_dict = {}
+    end_sites_dict = {}
+
     location_list = []      # List of all start and end locations
     location_list.extend(start_sites)
     location_list.extend(end_sites)
@@ -101,7 +100,7 @@ def create_location_dicts(start_sites, end_sites, strand_dir):
     for location in end_sites:
         end_sites_dict[location] = index
         index+=1
-        
+
 
     return loc_index_dict, start_sites_dict, end_sites_dict
 
@@ -122,12 +121,12 @@ def get_gene_data(gene_id,gene_datalist):
         start_site = row[3]
         end_site = row[4]
         trans_id = row[5]
-        
+
 
         """
         Forward strand (+):
-           potential start sites ->  Left of L 
-                                     Left of B 
+           potential start sites ->  Left of L
+                                     Left of B
            potential end sites ->    Right of R
                                      Right of B
 
@@ -144,11 +143,11 @@ def get_gene_data(gene_id,gene_datalist):
                 e_____e_____s_____s
                 |__R__|__B__|__L__|
 
-        """ 
-        
+        """
+
         if strand_dir == '+': # Forward strand
-            subexon_ids_dict[subexon_id] = [start_site,end_site] 
-            
+            subexon_ids_dict[subexon_id] = [start_site,end_site]
+
             if splice_end=='R':
                 end_sites.append(end_site)
             elif splice_end=='L':
@@ -159,11 +158,11 @@ def get_gene_data(gene_id,gene_datalist):
                 end_sites.append(end_site)
 
             elif splice_end !='-': # dash means internal exon, just ignore it, otherwise show error
-                print 'Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_end
+                print('Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_end)
 
         elif strand_dir == '-': # Reverse strand
             subexon_ids_dict[subexon_id] = [end_site,start_site]
-                        
+
             if splice_end=='R':
                 end_sites.append(start_site)
             elif splice_end=='L':
@@ -174,13 +173,13 @@ def get_gene_data(gene_id,gene_datalist):
                 end_sites.append(start_site)
 
             elif splice_end !='-': # dash means internal exon, just ignore it, otherwise show error
-                print 'Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_end
+                print('Error: Splice end value must be L, R, or B. Undefined splice end -> ' + splice_end)
 
 
-    start_sites = list(unique(start_sites))
-    end_sites = list(unique(end_sites))
+    start_sites = list(np.unique(start_sites))
+    end_sites = list(np.unique(end_sites))
 
-    
+
     if strand_dir == '-':
         end_sites.sort(reverse=True)
         start_sites.sort(reverse=True)
