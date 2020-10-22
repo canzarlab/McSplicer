@@ -285,11 +285,11 @@ def run_EM_bootstrap( cnt_file, gene_id, no_steps, read_length,gene_datalist,dis
         
         prev_likelihood = 0.
         curr_likelihood = 0.
-        num_iter = 250
+        num_iter = 1000
         step = 0
         count = 0
         max_count = 30
-        epsilon = 1e-4
+        epsilon = 1e-6
         offset_val = 0.0001 # to avoid division by zero error
         
         ###################### Step 5: Run EM
