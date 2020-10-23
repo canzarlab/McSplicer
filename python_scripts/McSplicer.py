@@ -1,15 +1,6 @@
 
 # coding: utf-8
 
-# <h3>Modified version</h3>
-#
-# <ul>
-#     <li>Added start and stop nodes to resolve the identifiability issue</li>
-#     <li>End sites are computed from junction reads, not in EM</li>
-# </ul>
-
-# In[1]:
-
 
 
 
@@ -31,7 +22,7 @@ from add_start_end_read_counts import *
 np.random.seed(42)
 
 
-# In[2]:
+
 
 
 def get_gene_tx_dict(abundance_file):
@@ -56,8 +47,6 @@ def get_gene_tx_dict(abundance_file):
 
     return gene_tx_dict
 
-
-# In[3]:
 
 
 def filter_out_unexpressed_transcripts(gene_datalist,gene_tx_list):
@@ -87,10 +76,7 @@ def filter_out_unexpressed_transcripts(gene_datalist,gene_tx_list):
     return gene_data
 
 
-# In[4]:
 
-
-#python2 python_code/bootstrap.py --gtf_file /data/israa/RNASeqMixology/GRCh37_latest_genomic.refined.gtf --cnt_file /data/israa/RNASeqMixology/new_cnt_hg19/R1-050_C5N4YANXX_TTAGGCAT.cnt --gene_id gene17406 --out_dir /data/israa/RNASeqMixology/output2/ --no_steps 10 --read_length 100
 def bootstrap(subpath_freq_list):
 
     #print '(Before) Freq list',subpath_freq_list
@@ -108,7 +94,6 @@ def bootstrap(subpath_freq_list):
     return subpath_freq_list
 
 
-# In[5]:
 
 
 def get_q_vector_from_junction_reads(strand_dir,subexon_ids_dict,loc_list,end_sites_dict,subpath_list,subpath_freq_list):
@@ -451,8 +436,6 @@ def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_li
     return out_filename
 
 
-# In[8]:
-
 
 def filter_subpath_list_by_subexon_ids(subpath_list, subpath_freq_list, subexon_ids):
     indices = []
@@ -464,7 +447,6 @@ def filter_subpath_list_by_subexon_ids(subpath_list, subpath_freq_list, subexon_
     return subset_subpath_list,subset_subpath_freq_list
 
 
-# In[9]:
 
 
 def get_args():
@@ -477,32 +459,25 @@ def get_args():
     parser.add_argument('--gene_id', type=str, help='Input gene ID, use this parameter when running McSplicer on a single gene. Default, run on all genes provided in the gtf annotation file.', default = '' ,required=False)
     #parser.add_argument('--gene_list', type=str, help='Input file with gene IDs, where each gene ID is written in a separate line, e.g., gene1\\ngene2\\ngene3, use this parameter when running McSplicer on multiple genes.', default = '',required=False)
     parser.add_argument('--bootstraps', type=int, default="0",help='Number of bootstraps')
-    #parser.add_argument('--add_start_end_fake_nodes', type=int,default=0,help='Add a reference points at the start and end of each gene.')
-    #parser.add_argument('--use_junction_reads_for_end_site_estimates',type=int,default=0,help='Compute end site probabilities via junction reads data.')
     parser.add_argument('--prefix', type=str, default="", help='Output file prefix.')
-    #args = parser.parse_args()
     args, unknown = parser.parse_known_args()
 
     return args
 
 
-# In[10]:
 
 
-
-def read_gene_list(gene_ids_file):
+def read_gene_list_from_file(gene_ids_file):
 
     gene_list = []
 
     with open(gene_ids_file,'rb') as in_file:
         for line in in_file:
             if line != '':
-#                line = line[:-2] #remove \n
                 gene_id = line.split()[0]
-                gene_list.append(gene_id)
+                gene_list.append(gene_id.decode('UTF-8'))
 
     return gene_list
-
 
 
 
@@ -519,16 +494,9 @@ if __name__ == "__main__":
     out_dir = params['out_dir']+'/'
     read_length = int(params['read_len'])
     no_steps = params['bootstraps']
-
-    #add_start_stop_nodes = bool(int(params['add_start_end_fake_nodes']))
-    #disable_end_sites_computation= bool(int(params['use_junction_reads_for_end_site_estimates']))
     out_prefix = params['prefix']
     disable_end_sites_computation = True
     add_start_stop_nodes = True
-
-
-
-
 
     gene_list = []
 
@@ -545,32 +513,25 @@ if __name__ == "__main__":
 
 
     for gene_id in gene_list:
-
-
         if not os.path.exists(out_dir):
-            #continue
             os.system('mkdir -p %s'%out_dir)
 
         if gene_id not in all_gene_dict:
-            print('Gene %s not found in the refined gtf!'%gene_id)
+            print('Gene %s not found in the provided refined gtf.'%gene_id)
             continue
 
 
         print('Running McSplicer on gene id',gene_id,'...')
 
-
         gene_datalist = all_gene_dict[gene_id]
 
 
-
         if not gene_datalist:
-            print('No entry found for the gene %s in the provided refined gtf file %s'%(gene_id,gtf_file))
+            print('No entry found for the gene %s in the provided refined gtf file %s.'%(gene_id,gtf_file))
             continue
 
-        #try:
         start_sites_dict, end_sites_dict, p_arr_list, q_arr_list = run_EM_bootstrap(cnt_file, gene_id, no_steps, read_length,gene_datalist,disable_end_sites_computation,add_start_stop_nodes)
-        #except IndexError:
-         #    print '>>>>>>>>Index out of range error, skipped gene %s'%gene_id
+
 
         if len(start_sites_dict) > 0:
             chr_id = gene_datalist[0][-1]
@@ -581,4 +542,3 @@ if __name__ == "__main__":
         else:
             print('\tNo counts are found for gene', gene_id)
 
-        #break
