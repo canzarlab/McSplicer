@@ -79,6 +79,12 @@ The output csv file contains the bootstrap step, splice site index, gene strand,
  
  Splice site index column represents the index of 3' start or 5' end splice sites as they appear in a gene according to their chronological order, e.g., s<sub>0</sub>, s<sub>1</sub>,..., e<sub>0</sub>, e<sub>1</sub>,.. see the figure above for illustration.
  
+### Data availability: ###
+
+The subfolder `./simulation_study`  contains the data and script needed to generate the synthetic RNA-seq datasets and reproduce the results reported in McSplicer paper.
+Spike-In RNA Variants are available at [the NCBI database](https://www.ncbi.nlm.nih.gov/gquery) in dataset ID: SRR3497201. The RNA-seq reads of the 36 individuals with autism spectrum disorder are publicly available [here](https://www.ebi.ac.uk/arrayexpress/experiments/E-MTAB-7351/).
+
+
 
 
 McSplicer developers:
