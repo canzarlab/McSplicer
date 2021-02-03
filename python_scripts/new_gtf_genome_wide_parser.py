@@ -14,50 +14,54 @@ __copyright__   = "Copyright 2017, McSplicer"
 import csv
 import numpy as np
 import time
+from collections import defaultdict
 
 
 
-def get_all_genes_dict(gtf_file):
+def get_all_genes_dict(gtf_file, tx_anno=False):
 
     gene_dict = {}
+    ss_anno = defaultdict(list)
 
     with open(gtf_file, "r") as f:
         reader = csv.reader(f, delimiter="\t")
         for line in reader:
             if line[2] == 'subexon':
-                start_site = int(line[3])
-                end_site = int(line[4])
-                strand_dir = line[6]
+                    start_site = int(line[3])
+                    end_site = int(line[4])
+                    strand_dir = line[6]
 
-                gene_id = ''
-                chr_id = line[0]
+                    gene_id = ''
+                    chr_id = line[0]
 
-                feature_list = line[8].split(';')
-                for feature in feature_list:
-                    tag_val = feature.split()
-                    if len(tag_val) == 2:
+                    feature_list = line[8].split(';')
+                    for feature in feature_list:
+                        tag_val = feature.split()
+                        if len(tag_val) == 2:
 
-                        tag = tag_val[0]
-                        value = tag_val[1]
+                            tag = tag_val[0]
+                            value = tag_val[1]
 
-                        if tag=='SpliceEnd':
-                            splice_end = value[1:2] # R, L, or B
-                        elif tag=='NodeId':
-                            subexon_id = int(value)
-                        elif tag=='transcript_id':
-                            trans_id = value[1:-1]
-                        elif tag == 'gene_id':
-                            gene_id =  value[1:-1] #remove double qouts
+                            if tag=='SpliceEnd':
+                                splice_end = value[1:2] # R, L, or B
+                            elif tag=='NodeId':
+                                subexon_id = int(value)
+                            elif tag=='transcript_id':
+                                trans_id = value[1:-1]
+                            elif tag == 'gene_id':
+                                gene_id =  value[1:-1] #remove double qouts
 
-                if gene_id != '':
-                    if gene_id not in gene_dict:
-                        gene_dict[gene_id] = []
+                    if gene_id != '':
+                        if gene_id not in gene_dict:
+                            gene_dict[gene_id] = []
 
 
-                    gene_dict[gene_id].append([subexon_id,strand_dir,splice_end,start_site,end_site,trans_id,chr_id])
-                    #print 'gene_id',gene_id,'subexon_id',subexon_id,'strand_dir',strand_dir,'ss',start_site,'es',end_site,'splice_end',splice_end,'trans_id',trans_id
+                        gene_dict[gene_id].append([subexon_id,strand_dir,splice_end,start_site,end_site,trans_id,chr_id])
+                        if tx_anno:
+                            ss_anno[start_site].append(trans_id)
+                            ss_anno[end_site].append(trans_id)
 
-    return gene_dict
+    return gene_dict,ss_anno
 
 
 

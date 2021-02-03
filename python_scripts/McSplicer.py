@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-
-
-
 import argparse
 import os,sys,math,operator
 import os.path
@@ -400,7 +394,7 @@ def run_EM_bootstrap( cnt_file, gene_id, no_steps, read_length,gene_datalist,dis
 # In[7]:
 
 
-def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_list, out_DIR, no_steps,out_prefix,add_start_stop_nodes,chr_id,strand):
+def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_list, out_DIR, no_steps,out_prefix,add_start_stop_nodes,chr_id,strand,ss_tx_dict=None):
     sorted_ss_dict = sorted(list(start_sites_dict.items()), key=operator.itemgetter(1))
     sorted_es_dict = sorted(list(end_sites_dict.items()), key=operator.itemgetter(1))
 
@@ -424,17 +418,43 @@ def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_li
         start_idx = 1 # to skip the first start and end sites of the first fake node
 
 
+    idx_pos_d = {}
     for curr_step in range(no_steps+1):
         for i in range(start_idx,ss_count):
-            writer.writerow([curr_step, 's'+str(sorted_ss_dict[i][1]-start_idx),strand,chr_id, sorted_ss_dict[i][0], p_arr_list[curr_step][i]])
+            ss_idx = 's'+str(sorted_ss_dict[i][1]-start_idx)
+            ss_pos = sorted_ss_dict[i][0]
+            writer.writerow([curr_step, ss_idx,strand,chr_id,ss_pos, p_arr_list[curr_step][i]])
+            idx_pos_d[ss_pos] = ss_idx
 
         for i in range(start_idx,es_count):
-            writer.writerow([curr_step, 'e'+str(sorted_es_dict[i][1]-start_idx),strand,chr_id ,sorted_es_dict[i][0], q_arr_list[curr_step][i]])
-
+            es_idx = 'e'+str(sorted_es_dict[i][1]-start_idx)
+            es_pos = sorted_es_dict[i][0]
+            writer.writerow([curr_step,es_idx ,strand,chr_id ,es_pos, q_arr_list[curr_step][i]])
+            idx_pos_d[es_pos] = es_idx
 
     f.close()
-    return out_filename
+    return out_filename,idx_pos_d
 
+
+def write_annotation_out(gene_id,strand,ss_tx_dict,idx_pos_d,out_dir):
+    if not ss_tx_dict:
+        return
+
+    anno_file = out_dir + gene_id+'_anno.csv'
+    f = open(anno_file, 'w')
+    writer = csv.writer(f)
+    writer.writerow(['Index', 'Transcripts'])
+    rev_FLAG = True if strand=='-' else False
+    for ss in sorted(ss_tx_dict.keys(),reverse = rev_FLAG):
+        if ss in idx_pos_d:
+            idx = idx_pos_d[ss]
+            tx_l = ss_tx_dict[ss]
+            tx_l = list(set(tx_l))
+            writer.writerow([idx,', '.join(tx_l)])
+    f.close()
+    return anno_file
+    
+    
 
 
 def filter_subpath_list_by_subexon_ids(subpath_list, subpath_freq_list, subexon_ids):
@@ -460,6 +480,7 @@ def get_args():
     #parser.add_argument('--gene_list', type=str, help='Input file with gene IDs, where each gene ID is written in a separate line, e.g., gene1\\ngene2\\ngene3, use this parameter when running McSplicer on multiple genes.', default = '',required=False)
     parser.add_argument('--bootstraps', type=int, default="0",help='Number of bootstraps')
     parser.add_argument('--prefix', type=str, default="", help='Output file prefix.')
+    parser.add_argument('--anno', type=str, default="n", help='y/n, if y an output file is generated per gene which contains the mapping between splice site index and transcript id.')
     args, unknown = parser.parse_known_args()
 
     return args
@@ -495,20 +516,30 @@ if __name__ == "__main__":
     read_length = int(params['read_len'])
     no_steps = params['bootstraps']
     out_prefix = params['prefix']
+    anno = params['anno']
     disable_end_sites_computation = True
     add_start_stop_nodes = True
 
+    
+    
+    anno_FLAG = False
+    ss_tx_dict = {}
+    if anno.lower() == 'y':
+        anno_FLAG = True
+        
     gene_list = []
 
     #if input_gene_ids_file != '':
         #gene_list = read_gene_list(input_gene_ids_file)
 
-    all_gene_dict = get_all_genes_dict(gtf_file) # all gene data dictionary
+    all_gene_dict,ss_tx_dict = get_all_genes_dict(gtf_file,anno_FLAG) # all gene data dictionary
 
     if gene_id != '':
         gene_list.append(gene_id)
     else:
         gene_list = [gene_id for gene_id in all_gene_dict]
+        
+
 
 
 
@@ -536,7 +567,10 @@ if __name__ == "__main__":
         if len(start_sites_dict) > 0:
             chr_id = gene_datalist[0][-1]
             strand = gene_datalist[0][1]
-            output_f = write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_list, out_dir, no_steps,out_prefix,add_start_stop_nodes,chr_id,strand)
+            output_f,idx_pos_d = write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_list, out_dir, no_steps,out_prefix,add_start_stop_nodes,chr_id,strand,ss_tx_dict)
+            
+            if anno_FLAG and len(ss_tx_dict.keys()) > 0:
+                write_annotation_out(gene_id,strand,ss_tx_dict,idx_pos_d,out_dir)
 
             print('\tOutput is written to the folder',output_f)
         else:
