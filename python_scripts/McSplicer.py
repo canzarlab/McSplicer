@@ -480,7 +480,7 @@ def get_args():
     #parser.add_argument('--gene_list', type=str, help='Input file with gene IDs, where each gene ID is written in a separate line, e.g., gene1\\ngene2\\ngene3, use this parameter when running McSplicer on multiple genes.', default = '',required=False)
     parser.add_argument('--bootstraps', type=int, default="0",help='Number of bootstraps')
     parser.add_argument('--prefix', type=str, default="", help='Output file prefix.')
-    parser.add_argument('--anno', type=str, default="n", help='y/n, if y an output file is generated per gene which contains the mapping between splice site index and transcript id.')
+    parser.add_argument('--anno', type=str, default="n", help='y/n, if y an output file is generated per gene which contains the mapping between splice site index and a list of transcript IDs which included this splice site.')
     args, unknown = parser.parse_known_args()
 
     return args
