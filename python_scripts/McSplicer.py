@@ -394,7 +394,7 @@ def run_EM_bootstrap( cnt_file, gene_id, no_steps, read_length,gene_datalist,dis
 # In[7]:
 
 
-def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_list, out_DIR, no_steps,out_prefix,add_start_stop_nodes,chr_id,strand,ss_tx_dict=None):
+def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_list, out_DIR, no_steps,out_prefix,add_start_stop_nodes,chr_id,strand,ss_tx_dict=None, anno_FLAG=False):
     sorted_ss_dict = sorted(list(start_sites_dict.items()), key=operator.itemgetter(1))
     sorted_es_dict = sorted(list(end_sites_dict.items()), key=operator.itemgetter(1))
 
@@ -406,7 +406,10 @@ def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_li
 
     f = open(out_filename, 'w')
     writer = csv.writer(f)
-    writer.writerow(['step', 'index', 'strand' ,'chr','splice site locus', 'usage estimate'])
+    if anno_FLAG:
+        writer.writerow(['step', 'index', 'strand' ,'chr','splice site locus', 'usage estimate','transcripts'])
+    else:
+        writer.writerow(['step', 'index', 'strand' ,'chr','splice site locus', 'usage estimate'])
 
     ss_count = len(sorted_ss_dict)
     es_count = len(sorted_es_dict)-1
@@ -423,13 +426,27 @@ def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_li
         for i in range(start_idx,ss_count):
             ss_idx = 's'+str(sorted_ss_dict[i][1]-start_idx)
             ss_pos = sorted_ss_dict[i][0]
-            writer.writerow([curr_step, ss_idx,strand,chr_id,ss_pos, p_arr_list[curr_step][i]])
+            
+            if curr_step == 0 and anno_FLAG:
+                if ss_pos in ss_tx_dict:
+                    tx_l = ss_tx_dict[ss_pos]
+                    tx_l = list(set(tx_l))
+                    writer.writerow([curr_step, ss_idx,strand,chr_id,ss_pos, p_arr_list[curr_step][i],', '.join(tx_l)])
+            else:  
+                writer.writerow([curr_step, ss_idx,strand,chr_id,ss_pos, p_arr_list[curr_step][i]])
             idx_pos_d[ss_pos] = ss_idx
 
         for i in range(start_idx,es_count):
             es_idx = 'e'+str(sorted_es_dict[i][1]-start_idx)
             es_pos = sorted_es_dict[i][0]
-            writer.writerow([curr_step,es_idx ,strand,chr_id ,es_pos, q_arr_list[curr_step][i]])
+            
+            if curr_step == 0 and anno_FLAG:
+                if es_pos in ss_tx_dict:
+                    tx_l = ss_tx_dict[es_pos]
+                    tx_l = list(set(tx_l))
+                    writer.writerow([curr_step,es_idx ,strand,chr_id ,es_pos, q_arr_list[curr_step][i],', '.join(tx_l)])
+            else:
+                writer.writerow([curr_step,es_idx ,strand,chr_id ,es_pos, q_arr_list[curr_step][i]])
             idx_pos_d[es_pos] = es_idx
 
     f.close()
@@ -480,7 +497,7 @@ def get_args():
     #parser.add_argument('--gene_list', type=str, help='Input file with gene IDs, where each gene ID is written in a separate line, e.g., gene1\\ngene2\\ngene3, use this parameter when running McSplicer on multiple genes.', default = '',required=False)
     parser.add_argument('--bootstraps', type=int, default="0",help='Number of bootstraps')
     parser.add_argument('--prefix', type=str, default="", help='Output file prefix.')
-    parser.add_argument('--anno', type=str, default="n", help='y/n, if y an output file is generated per gene which contains the mapping between splice site index and a list of transcript IDs which included this splice site.')
+    parser.add_argument('--anno', type=str, default="n", help='y/n, if y the output file contains the mapping between splice site index and a list of transcript IDs which included this splice site.')
     args, unknown = parser.parse_known_args()
 
     return args
@@ -567,10 +584,10 @@ if __name__ == "__main__":
         if len(start_sites_dict) > 0:
             chr_id = gene_datalist[0][-1]
             strand = gene_datalist[0][1]
-            output_f,idx_pos_d = write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_list, out_dir, no_steps,out_prefix,add_start_stop_nodes,chr_id,strand,ss_tx_dict)
+            output_f,idx_pos_d = write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_list, out_dir, no_steps,out_prefix,add_start_stop_nodes,chr_id,strand,ss_tx_dict,anno_FLAG)
             
-            if anno_FLAG and len(ss_tx_dict.keys()) > 0:
-                write_annotation_out(gene_id,strand,ss_tx_dict,idx_pos_d,out_dir)
+            #if anno_FLAG and len(ss_tx_dict.keys()) > 0:
+                #write_annotation_out(gene_id,strand,ss_tx_dict,idx_pos_d,out_dir)
 
             print('\tOutput is written to the folder',output_f)
         else:
