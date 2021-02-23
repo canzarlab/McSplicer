@@ -398,10 +398,14 @@ def write_output(gene_id, start_sites_dict, end_sites_dict, p_arr_list, q_arr_li
     sorted_ss_dict = sorted(list(start_sites_dict.items()), key=operator.itemgetter(1))
     sorted_es_dict = sorted(list(end_sites_dict.items()), key=operator.itemgetter(1))
 
+    out_DIR = '/'.join([out_DIR,chr_id]) + "/"
+
     if  out_prefix == '':
         out_filename = out_DIR + gene_id+'.csv'
     else:
         out_filename = out_DIR + gene_id+'_'+out_prefix+'.csv'
+
+    os.system('mkdir -p %s'%out_DIR)
 
 
     f = open(out_filename, 'w')
@@ -529,7 +533,7 @@ if __name__ == "__main__":
     cnt_file = params['count_file']
     #input_gene_ids_file = params['gene_list']
     gene_id = params['gene_id']
-    out_dir = params['out_dir']+'/'
+    out_dir = params['out_dir']
     read_length = int(params['read_len'])
     no_steps = params['bootstraps']
     out_prefix = params['prefix']
